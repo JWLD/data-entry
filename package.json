@@ -1,0 +1,29 @@
+{
+  "name": "data-entry",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run src/start.js",
+    "dev": "nodemon src/start.js",
+    "sass": "./node_modules/.bin/node-sass ./public/css/main.scss ./public/css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JWLD/data-entry.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JWLD/data-entry/issues"
+  },
+  "homepage": "https://github.com/JWLD/data-entry#readme",
+  "dependencies": {
+    "handlebars": "^4.0.10",
+    "hapi": "^16.5.2",
+    "inert": "^4.2.1",
+    "node-sass": "^4.5.3",
+    "vision": "^4.1.1"
+  }
+}
