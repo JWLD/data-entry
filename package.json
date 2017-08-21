@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run src/start.js",
     "dev": "nodemon src/start.js",
-    "sass": "./node_modules/.bin/node-sass ./public/css/main.scss ./public/css/style.css"
+    "sass": "./node_modules/.bin/node-sass ./public/sass/main.scss ./public/sass/style.css"
   },
   "repository": {
     "type": "git",
@@ -20,9 +20,11 @@
   },
   "homepage": "https://github.com/JWLD/data-entry#readme",
   "dependencies": {
+    "dotenv": "^4.0.0",
     "handlebars": "^4.0.10",
     "hapi": "^16.5.2",
     "inert": "^4.2.1",
+    "jsonwebtoken": "^7.4.3",
     "node-sass": "^4.5.3",
     "vision": "^4.1.1"
   }
