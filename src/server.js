@@ -22,9 +22,7 @@ server.state('jwt', {
   ttl: 1000 * 60 * 60 * 24, // 24 hours
   isSecure: false,
   isHttpOnly: false,
-  encoding: 'base64json',
-  clearInvalid: false, // remove invalid cookies
-  strictHeader: true // don't allow violations of RFC 6265
+  encoding: 'base64json'
 });
 
 // register helpers
