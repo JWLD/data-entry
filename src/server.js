@@ -19,7 +19,7 @@ server.connection({
 
 // configure jwt cookie
 server.state('jwt', {
-  ttl: 60 * 60 * 24, // 24 hours
+  ttl: 1000 * 60 * 60 * 24, // 24 hours
   isSecure: false,
   isHttpOnly: false,
   encoding: 'base64json',

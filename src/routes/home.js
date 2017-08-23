@@ -4,7 +4,7 @@ module.exports = {
   method: 'GET',
   path: '/',
   handler: (request, reply) => {
-    if (request.headers.cookie.includes('jwt=')) {
+    if (request.headers.cookie && request.headers.cookie.includes('jwt=')) {
       reply.view('home', {
         token: true
       });
