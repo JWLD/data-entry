@@ -5,6 +5,7 @@ const Hapi = require('hapi');
 const Inert = require('inert'); // serve static files
 const Vision = require('vision'); // serve views
 const Handlebars = require('handlebars');
+const Path = require('path');
 
 // local includes
 const routes = require('./routes');
@@ -19,12 +20,10 @@ server.connection({
 
 // configure jwt cookie
 server.state('jwt', {
-  ttl: 60 * 60 * 24, // 24 hours
+  ttl: 1000 * 60 * 60 * 24, // 24 hours
   isSecure: false,
   isHttpOnly: false,
-  encoding: 'base64json',
-  clearInvalid: false, // remove invalid cookies
-  strictHeader: true // don't allow violations of RFC 6265
+  encoding: 'base64json'
 });
 
 // register helpers
@@ -34,10 +33,10 @@ server.register([Inert, Vision], (err) => {
   // handlebars templating
   server.views({
     engines: { hbs: Handlebars },
-    relativeTo: __dirname,
-    path: '../views',
-    layoutPath: '../views/layouts',
-    layout: 'main'
+    relativeTo: Path.join(__dirname, '..', 'views'),
+    layoutPath: './layouts',
+    layout: 'main',
+    partialsPath: './partials'
   });
 });
 

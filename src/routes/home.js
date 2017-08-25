@@ -1,12 +1,16 @@
 'use strict';
 
+const JsonWebToken = require('jsonwebtoken');
+
 module.exports = {
   method: 'GET',
   path: '/',
   handler: (request, reply) => {
-    if (request.headers.cookie.includes('jwt=')) {
+    if (request.state.jwt) {
+      const decoded = JsonWebToken.decode(request.state.jwt);
+
       reply.view('home', {
-        token: true
+        user: decoded.user
       });
     } else {
       reply.view('home');
