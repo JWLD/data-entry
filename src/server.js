@@ -5,6 +5,7 @@ const Hapi = require('hapi');
 const Inert = require('inert'); // serve static files
 const Vision = require('vision'); // serve views
 const Handlebars = require('handlebars');
+const Path = require('path');
 
 // local includes
 const routes = require('./routes');
@@ -32,10 +33,10 @@ server.register([Inert, Vision], (err) => {
   // handlebars templating
   server.views({
     engines: { hbs: Handlebars },
-    relativeTo: __dirname,
-    path: '../views',
-    layoutPath: '../views/layouts',
-    layout: 'main'
+    relativeTo: Path.join(__dirname, '..', 'views'),
+    layoutPath: './layouts',
+    layout: 'main',
+    partialsPath: './partials'
   });
 });
 

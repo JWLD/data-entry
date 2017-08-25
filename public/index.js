@@ -8,5 +8,5 @@
     jwt = jwt.slice(4);
   }
 
-  console.log(jwt);
+  // console.log(jwt);
 })();
