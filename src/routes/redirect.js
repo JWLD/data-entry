@@ -46,9 +46,9 @@ const getSpotifyUsername = (tokenBody, reply) => {
     tokenBody.user = parsed.id;
     const token = JsonWebToken.sign(tokenBody, process.env.SECRET);
 
-    reply.view('home', {
-      user: parsed.id
-    }).state('jwt', token);
+    reply.redirect('/')
+      .state('jwt', token)
+      .state('user', parsed.id);
   });
 };
 

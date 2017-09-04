@@ -1,0 +1,67 @@
+.login-wrap {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.login-wrap:hover .spotify-icon {
+  background-color: #333;
+}
+
+.spotify-icon {
+  @include flex;
+  padding: 7px;
+  width: 60px;
+  font-size: 60px;
+  background-color: #222;
+  color: #84bd00;
+  border-left: 3px solid #eee;
+  border-bottom: 3px solid #eee;
+}
+
+.spotify-icon:hover {
+  cursor: pointer;
+}
+
+.logged-in {
+  border-color: green;
+}
+
+.login-button-wrap {
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  height: 100%;
+  padding: 8px;
+  transition: 0.2s;
+  background-color: #222;
+  width: $login-button-width;
+  border-left: 3px solid #eee;
+  border-bottom: 3px solid #eee;
+}
+
+.login-button {
+  flex-grow: 1;
+  color: white;
+  font: 15px Gidole;
+  border: 1px solid #eee;
+  width: 100%;
+}
+
+.login-button:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.show-login-buttons {
+  left: -$login-button-width;
+}
+
+.inactive {
+  color: gray;
+  border-color: gray;
+  pointer-events: none;
+  cursor: default;
+}

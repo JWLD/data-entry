@@ -3,6 +3,6 @@
 module.exports = [
   require('./static'),
   require('./home'),
-  require('./spotify'),
+  require('./login'),
   require('./redirect')
 ];

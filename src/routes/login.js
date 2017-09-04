@@ -14,6 +14,6 @@ const handler = (request, reply) => {
 
 module.exports = {
   method: 'GET',
-  path: '/spotify',
+  path: '/login',
   handler
 };
