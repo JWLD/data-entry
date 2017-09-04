@@ -1,7 +1,10 @@
-// general
-@import 'reset';
+// GENERAL
 @import 'vars';
-@import 'header';
+@import 'fonts';
+@import 'reset';
 
-// pages
+// PARTIALS
+@import 'login';
+
+// VIEWS
 @import 'home';

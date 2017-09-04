@@ -1,12 +1,26 @@
-body, button, a {
+// SIZE RESET
+
+body, button, a, div {
   margin: 0;
   padding: 0;
   border: 0;
   box-sizing: border-box;
 }
 
+// FLEX
+
+header, div, a, i {
+  @include flex;
+}
+
+// GENERAL
+
 button:hover, a:hover {
   cursor: pointer;
+}
+
+button:focus {
+  outline: none;
 }
 
 button {
