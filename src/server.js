@@ -8,7 +8,7 @@ const Handlebars = require('handlebars');
 const Path = require('path');
 
 // local includes
-const routes = require('./routes');
+const routes = require('./controllers');
 
 // create new hapi server
 const server = new Hapi.Server();
