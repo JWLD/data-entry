@@ -56,7 +56,8 @@ var dataEntry = (function() {
     // submit artist search
     document.getElementById('artist-search').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
-        const url = '/artists?q=' + e.target.value;
+        var count = document.getElementById('result-count').value;
+        var url = '/artists?q=' + e.target.value + '&count=' + count;
 
         dataEntry.makeRequest('GET', url, null, function(err, res) {
           if (err) return console.log('Artist search error: ', err);

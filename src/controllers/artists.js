@@ -20,7 +20,7 @@ const handler = (request, reply) => {
     if (error) return reply(`Discogs API Artists Error: ${error}`);
 
     // compile and return html partial using top n results
-    const topResults = body.results.slice(0, 10);
+    const topResults = body.results.slice(0, request.query.count);
     const html = Compile('artists', topResults);
 
     return reply(html);

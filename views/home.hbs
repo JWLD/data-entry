@@ -1,9 +1,25 @@
 {{>login}}
 
 <section class="artist-search">
-  <label>Search For A Composer
-    <input type="text" id="artist-search" autocomplete="off">
-  </label>
+  <div class="artist-search-headers">
+    <h1 class="search-title">Search For A Composer</h1>
+    <div class="result-count-wrap">
+      <span>Number of Results</span>
+      <select id="result-count">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select>
+    </div>
+  </div>
+
+  <input type="text" id="artist-search" autocomplete="off">
 
   <div class="artist-results-wrap" id="artist-results"></div>
 </section>
