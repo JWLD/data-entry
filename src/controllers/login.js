@@ -1,5 +1,3 @@
-'use strict';
-
 const Querystring = require('querystring');
 const Request = require('request');
 const JsonWebToken = require('jsonwebtoken');

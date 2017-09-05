@@ -1,5 +1,3 @@
-'use strict';
-
 const JsonWebToken = require('jsonwebtoken');
 
 module.exports = {

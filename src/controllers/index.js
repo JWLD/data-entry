@@ -1,5 +1,3 @@
-'use strict';
-
 const loginController = require('./login');
 
 module.exports = [

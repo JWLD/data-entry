@@ -1,5 +1,3 @@
-'use strict';
-
 // external packages
 const Hapi = require('hapi');
 const Inert = require('inert'); // serve static files
