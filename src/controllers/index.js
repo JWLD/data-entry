@@ -1,9 +1,11 @@
 'use strict';
 
+const loginController = require('./login');
+
 module.exports = [
   require('./static'),
   require('./home'),
-  require('./login'),
-  require('./redirect'),
+  loginController.login,
+  loginController.redirect,
   require('./artists')
 ];

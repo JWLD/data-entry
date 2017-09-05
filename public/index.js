@@ -17,37 +17,22 @@ var dataEntry = (function() {
     }
   };
 
-  var addEventListeners = function() {
+  // configure login / logout buttons depending on cookies
+  var configureLoginButtons = function() {
+    var loginButton = document.getElementById('login-button');
+    var logoutButton = document.getElementById('logout-button');
+
     // event listener for spotify icon
     document.getElementById('spotify-icon').addEventListener('click', function() {
       document.querySelector('.login-button-wrap').classList.toggle('show-login-buttons');
     });
 
     // delete cookies when logout button clicked
-    document.getElementById('logout-button').addEventListener('click', function() {
+    logoutButton.addEventListener('click', function() {
       document.cookie = 'jwt=; expires=Thu 01 Jan 1970 00:00:00 UTC;';
       document.cookie = 'user=; expires=Thu 01 Jan 1970 00:00:00 UTC;';
       location.href = '/';
     });
-
-    // submit artist search
-    document.getElementById('artist-search').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        const url = '/artists?q=' + e.target.value;
-
-        dataEntry.makeRequest('GET', url, null, function(err, res) {
-          if (err) return console.log('Artist search error: ', err);
-
-          document.getElementById('artist-results').innerHTML = res;
-        });
-      }
-    });
-  };
-
-  // configure login / logout buttons depending on cookies
-  var configureLoginButtons = function() {
-    var loginButton = document.getElementById('login-button');
-    var logoutButton = document.getElementById('logout-button');
 
     // extract user cookie
     var user = document.cookie.split('; ').find(function(cookie) {
@@ -67,9 +52,24 @@ var dataEntry = (function() {
     }
   };
 
+  var artistListener = function() {
+    // submit artist search
+    document.getElementById('artist-search').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        const url = '/artists?q=' + e.target.value;
+
+        dataEntry.makeRequest('GET', url, null, function(err, res) {
+          if (err) return console.log('Artist search error: ', err);
+
+          document.getElementById('artist-results').innerHTML = res;
+        });
+      }
+    });
+  };
+
   // invoke immediately
-  addEventListeners();
   configureLoginButtons();
+  artistListener();
 
   // export
   return {
