@@ -1,23 +1,24 @@
 body {
   min-height: 100vh;
   background-color: #111;
+  padding-top: 40px;
 }
 
-.artist-search {
+.step {
   justify-content: flex-start;
-  padding: 80px 40px 40px 40px;
+  padding: 40px 40px 0 40px;
 }
 
-.search-title {
+.step-header {
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
   color: white;
   font: bold 40px Gidole;
+  margin-bottom: 16px;
 }
 
-.artist-search input {
-  margin: 16px 0 24px 0;
+.artist-search-input {
   width: 100%;
   padding: 8px;
   font: bold 25px Gidole;
@@ -28,15 +29,19 @@ body {
   align-items: flex-end;
 }
 
+.result-count-wrap {
+  margin-bottom: 16px;
+}
+
 .result-count-wrap span {
-  font: bold 20px Gidole;
+  font: bold 24px Gidole;
   color: white;
   white-space: nowrap;
   margin-right: 12px;
 }
 
-select {
-  font: 17px Gidole;
+.result-count {
+  font: 20px Gidole;
 }
 
 .artist-results-wrap {

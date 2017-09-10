@@ -42,7 +42,7 @@ loginController.redirect = {
     Request(options, (error, response, body) => {
       if (error) return console.log(error);
 
-      getUserInfo(body);
+      getUserInfo(body, reply);
     });
   }
 };
