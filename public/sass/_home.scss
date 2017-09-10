@@ -1,12 +1,12 @@
 body {
   min-height: 100vh;
   background-color: #111;
-  padding-top: 40px;
+  padding: 80px 40px 40px 40px;
 }
 
 .step {
   justify-content: flex-start;
-  padding: 40px 40px 0 40px;
+  padding-bottom: 40px;
 }
 
 .step-header {
@@ -17,6 +17,8 @@ body {
   font: bold 40px Gidole;
   margin-bottom: 16px;
 }
+
+// Artist Search
 
 .artist-search-input {
   width: 100%;
@@ -44,6 +46,8 @@ body {
   font: 20px Gidole;
 }
 
+// Artist Result Section
+
 .artist-results-wrap {
   justify-content: flex-start;
   width: 100%;
@@ -52,6 +56,7 @@ body {
   background-color: #333;
   border-radius: 3px;
   overflow: scroll;
+  margin-bottom: 16px;
 }
 
 .artist-result {
@@ -83,4 +88,23 @@ body {
   border-radius: 2px;
   color: white;
   font: bold 20px Gidole;
+}
+
+// Arist Result Buttons
+
+.artist-result-button {
+  width: 170px;
+  font: bold 20px Gidole;
+  color: white;
+  background-color: #222;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.artist-result-button:hover {
+  background-color: #333;
+}
+
+.artist-result-button:not(:last-child) {
+  margin-right: 16px;
 }
