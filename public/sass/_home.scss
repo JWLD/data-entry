@@ -106,7 +106,7 @@ body {
 
 .artist-result-button {
   height: 50px;
-  width: calc(100% / 2 - 8px);
+  flex-grow: 1;
   font: bold 20px Gidole;
   color: white;
   background-color: #222;
@@ -116,4 +116,15 @@ body {
 
 .artist-result-button:hover {
   background-color: #333;
+}
+
+.artist-symbol {
+  color: gray;
+  font-size: 50px;
+  margin: 0 14px;
+}
+
+.inactive {
+  pointer-events: none;
+  cursor: default;
 }
