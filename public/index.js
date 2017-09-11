@@ -63,8 +63,27 @@ var dataEntry = (function() {
           if (err) return console.log('Artist search error: ', err);
 
           document.getElementById('artist-results').innerHTML = res;
+
+          artistPicListeners();
         });
       }
+    });
+  };
+
+  var artistPicListeners = function() {
+    var artistPics = Array.from(document.getElementsByClassName('artist-image'));
+
+    artistPics.forEach(function(button) {
+      button.addEventListener('click', function() {
+        button.parentElement.classList.toggle('select-artist');
+
+        // remove class from other pics
+        artistPics.forEach(function(pic) {
+          if (pic !== button) {
+            pic.parentElement.classList.remove('select-artist');
+          }
+        });
+      });
     });
   };
 
