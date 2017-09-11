@@ -1,9 +1,11 @@
+const viewsController = require('./views');
 const loginController = require('./login');
+const discogsController = require('./discogs');
 
 module.exports = [
   require('./static'),
-  require('./home'),
+  viewsController.home,
   loginController.login,
   loginController.redirect,
-  require('./artists')
+  discogsController.artists
 ];

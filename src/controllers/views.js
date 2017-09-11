@@ -1,6 +1,9 @@
 const JsonWebToken = require('jsonwebtoken');
 
-module.exports = {
+const viewsController = module.exports = {};
+
+// HOME ROUTE - RENDER HOME VIEW
+viewsController.home = {
   method: 'GET',
   path: '/',
   handler: (request, reply) => {
