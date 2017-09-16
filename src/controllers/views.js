@@ -2,6 +2,17 @@ const JsonWebToken = require('jsonwebtoken');
 
 const viewsController = module.exports = {};
 
+// SERVE STATIC FILES
+viewsController.static = {
+  method: 'GET',
+  path: '/{file*}',
+  handler: {
+    directory: {
+      path: './public'
+    }
+  }
+};
+
 // HOME ROUTE - RENDER HOME VIEW
 viewsController.home = {
   method: 'GET',
