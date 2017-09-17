@@ -116,6 +116,8 @@ var dataEntry = (function() {
       artistAdd.classList.remove('inactive');
       artistSearch.classList.add('inactive');
     }
+
+    selected.getElementsByClassName('artist-overlay')[0].classList.toggle('hidden');
   };
 
   // invoke immediately
