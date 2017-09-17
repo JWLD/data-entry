@@ -105,7 +105,7 @@ var dataEntry = (function() {
               configureArtistButtons(res, selected);
             });
           }
-        // when user deselects the selected artist (rather than selecting a new one)
+        // when user deselects the current artist
         } else {
           selected.getElementsByClassName('artist-overlay')[0].classList.add('hidden');
         }
