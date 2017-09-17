@@ -1,4 +1,7 @@
 var dataEntry = (function() {
+  // globals
+  var selection = false;
+
   // XHR request function
   var makeRequest = function(method, url, data, callback) {
     var xhr = new XMLHttpRequest();
@@ -71,37 +74,46 @@ var dataEntry = (function() {
   };
 
   var artistPicListeners = function() {
-    var artistPics = Array.from(document.getElementsByClassName('artist-image'));
+    var artistButtons = Array.from(document.getElementsByClassName('artist-image'));
 
-    artistPics.forEach(function(button) {
+    artistButtons.forEach(function(button) {
       button.addEventListener('click', function() {
         var selected = button.parentElement;
         selected.classList.toggle('select-artist');
 
-        // remove classes from other pics
-        artistPics.forEach(function(pic) {
-          if (pic !== button) {
-            pic.parentElement.classList.remove('select-artist');
-            pic.parentElement.getElementsByClassName('artist-overlay')[0].classList.add('hidden');
-          }
-        });
-
-        // set both result buttons to inactive while searching
+        // set both result buttons to inactive before searching
         document.getElementById('artist-result-add').classList.add('inactive');
         document.getElementById('artist-result-search').classList.add('inactive');
 
-        // query DB to see if artist exists or not
+        // if user has selected an artist
         if (selected.classList.contains('select-artist')) {
-          // show overlay with querying DB message
-          selected.getElementsByClassName('artist-overlay')[0].classList.remove('hidden');
+          selection = true;
 
-          var url = '/db-artists?q=' + button.dataset.id;
-
-          dataEntry.makeRequest('GET', url, null, function(err, res) {
-            if (err) return console.log('Artist DB search error: ', err);
-
-            configureArtistButtons(res, selected);
+          // remove classes from other pics
+          artistButtons.forEach(function(_button) {
+            if (_button !== button) {
+              _button.parentElement.classList.remove('select-artist');
+              _button.parentElement.getElementsByClassName('artist-overlay')[0].classList.add('hidden');
+            }
           });
+
+          // query DB to see if artist exists or not
+          if (selected.classList.contains('select-artist')) {
+            // show overlay with querying DB message
+            selected.getElementsByClassName('artist-overlay')[0].classList.remove('hidden');
+
+            var url = '/db-artists?q=' + button.dataset.id;
+
+            dataEntry.makeRequest('GET', url, null, function(err, res) {
+              if (err) return console.log('Artist DB search error: ', err);
+
+              configureArtistButtons(res, selected);
+            });
+          }
+        // when user deselects the selected artist (rather than selecting a new one)
+        } else {
+          selection = false;
+          selected.getElementsByClassName('artist-overlay')[0].classList.add('hidden');
         }
       });
     });
@@ -111,15 +123,18 @@ var dataEntry = (function() {
     var artistAdd = document.getElementById('artist-result-add');
     var artistSearch = document.getElementById('artist-result-search');
 
-    if (exists === 'true') {
-      artistAdd.classList.add('inactive');
-      artistSearch.classList.remove('inactive');
-    } else {
-      artistAdd.classList.remove('inactive');
-      artistSearch.classList.add('inactive');
-    }
+    // if there is a selection when DB query returns
+    if (selection) {
+      if (exists === 'true') {
+        artistAdd.classList.add('inactive');
+        artistSearch.classList.remove('inactive');
+      } else {
+        artistAdd.classList.remove('inactive');
+        artistSearch.classList.add('inactive');
+      }
 
-    selected.getElementsByClassName('artist-overlay')[0].classList.toggle('hidden');
+      selected.getElementsByClassName('artist-overlay')[0].classList.add('hidden');
+    }
   };
 
   // invoke immediately
