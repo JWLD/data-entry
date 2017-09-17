@@ -1,7 +1,4 @@
 var dataEntry = (function() {
-  // globals
-  var selection = false;
-
   // XHR request function
   var makeRequest = function(method, url, data, callback) {
     var xhr = new XMLHttpRequest();
@@ -87,8 +84,6 @@ var dataEntry = (function() {
 
         // if user has selected an artist
         if (selected.classList.contains('select-artist')) {
-          selection = true;
-
           // remove classes from other pics
           artistButtons.forEach(function(_button) {
             if (_button !== button) {
@@ -112,7 +107,6 @@ var dataEntry = (function() {
           }
         // when user deselects the selected artist (rather than selecting a new one)
         } else {
-          selection = false;
           selected.getElementsByClassName('artist-overlay')[0].classList.add('hidden');
         }
       });
@@ -123,8 +117,12 @@ var dataEntry = (function() {
     var artistAdd = document.getElementById('artist-result-add');
     var artistSearch = document.getElementById('artist-result-search');
 
-    // if there is a selection when DB query returns
-    if (selection) {
+    // check if there is a selection when DB query returns
+    var selection = Array.from(document.getElementsByClassName('artist-result')).filter((artist) => {
+      return artist.classList.contains('select-artist');
+    });
+
+    if (selection.length > 0) {
       if (exists === 'true') {
         artistAdd.classList.add('inactive');
         artistSearch.classList.remove('inactive');
