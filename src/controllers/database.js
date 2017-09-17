@@ -8,6 +8,11 @@ dbController.artists = {
   method: 'GET',
   path: '/db-artists',
   handler: (request, reply) => {
-    reply('Hello World');
+    dbQueries.checkArtist(connPool, request.query.q, (err, res) => {
+      if (err) return reply(`ERROR CHECKING ARTIST: ${err}`);
+
+      // return true or false depending on whether artist exists or not
+      return reply(res.rows[0].exists);
+    });
   }
 };
