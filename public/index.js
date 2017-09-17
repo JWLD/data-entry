@@ -76,11 +76,13 @@ var dataEntry = (function() {
     artistPics.forEach(function(button) {
       button.addEventListener('click', function() {
         button.parentElement.classList.toggle('select-artist');
+        button.parentElement.getElementsByClassName('artist-overlay')[0].classList.toggle('hidden');
 
         // remove class from other pics
         artistPics.forEach(function(pic) {
           if (pic !== button) {
             pic.parentElement.classList.remove('select-artist');
+            pic.parentElement.getElementsByClassName('artist-overlay')[0].classList.add('hidden');
           }
         });
       });
