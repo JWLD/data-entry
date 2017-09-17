@@ -7,7 +7,7 @@ const discogsController = module.exports = {};
 // ARTISTS ROUTE - QUERY DISCOGS FOR ARTISTS
 discogsController.artists = {
   method: 'GET',
-  path: '/artists',
+  path: '/discogs-artists',
   handler: (request, reply) => {
     // build request to Discogs API
     const queries = Querystring.stringify({

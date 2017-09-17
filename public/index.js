@@ -57,10 +57,10 @@ var dataEntry = (function() {
     document.getElementById('artist-search').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         var count = document.getElementById('result-count').value;
-        var url = '/artists?q=' + e.target.value + '&count=' + count;
+        var url = '/discogs-artists?q=' + e.target.value + '&count=' + count;
 
         dataEntry.makeRequest('GET', url, null, function(err, res) {
-          if (err) return console.log('Artist search error: ', err);
+          if (err) return console.log('Artist discogs search error: ', err);
 
           document.getElementById('artist-results').innerHTML = res;
 
@@ -85,6 +85,17 @@ var dataEntry = (function() {
             pic.parentElement.getElementsByClassName('artist-overlay')[0].classList.add('hidden');
           }
         });
+
+        // query DB to see if artist exists or not
+        if (button.parentElement.classList.contains('select-artist')) {
+          var url = '/db-artists?q=' + button.dataset.id;
+
+          dataEntry.makeRequest('GET', url, null, function(err, res) {
+            if (err) return console.log('Artist DB search error: ', err);
+
+            console.log(res);
+          });
+        }
       });
     });
   };
