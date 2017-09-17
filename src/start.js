@@ -1,5 +1,4 @@
 const server = require('./server');
-require('dotenv').config();
 
 // start the server
 server.start((err) => {

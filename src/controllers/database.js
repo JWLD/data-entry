@@ -1,3 +1,5 @@
+const connPool = require('../../database/db_connect');
+
 const dbController = module.exports = {};
 
 // ARTISTS ROUTE - CHECK IF ARTIST EXISTS IN DB
