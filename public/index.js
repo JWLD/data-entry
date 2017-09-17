@@ -77,9 +77,8 @@ var dataEntry = (function() {
       button.addEventListener('click', function() {
         var selected = button.parentElement;
         selected.classList.toggle('select-artist');
-        selected.getElementsByClassName('artist-overlay')[0].classList.toggle('hidden');
 
-        // remove class from other pics
+        // remove classes from other pics
         artistPics.forEach(function(pic) {
           if (pic !== button) {
             pic.parentElement.classList.remove('select-artist');
@@ -93,6 +92,9 @@ var dataEntry = (function() {
 
         // query DB to see if artist exists or not
         if (selected.classList.contains('select-artist')) {
+          // show overlay with querying DB message
+          selected.getElementsByClassName('artist-overlay')[0].classList.remove('hidden');
+
           var url = '/db-artists?q=' + button.dataset.id;
 
           dataEntry.makeRequest('GET', url, null, function(err, res) {
