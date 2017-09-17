@@ -75,8 +75,9 @@ var dataEntry = (function() {
 
     artistPics.forEach(function(button) {
       button.addEventListener('click', function() {
-        button.parentElement.classList.toggle('select-artist');
-        button.parentElement.getElementsByClassName('artist-overlay')[0].classList.toggle('hidden');
+        var selected = button.parentElement;
+        selected.classList.toggle('select-artist');
+        selected.getElementsByClassName('artist-overlay')[0].classList.toggle('hidden');
 
         // remove class from other pics
         artistPics.forEach(function(pic) {
@@ -86,18 +87,35 @@ var dataEntry = (function() {
           }
         });
 
+        // set both result buttons to inactive while searching
+        document.getElementById('artist-result-add').classList.add('inactive');
+        document.getElementById('artist-result-search').classList.add('inactive');
+
         // query DB to see if artist exists or not
-        if (button.parentElement.classList.contains('select-artist')) {
+        if (selected.classList.contains('select-artist')) {
           var url = '/db-artists?q=' + button.dataset.id;
 
           dataEntry.makeRequest('GET', url, null, function(err, res) {
             if (err) return console.log('Artist DB search error: ', err);
 
-            console.log(res);
+            configureArtistButtons(res, selected);
           });
         }
       });
     });
+  };
+
+  var configureArtistButtons = function(exists, selected) {
+    var artistAdd = document.getElementById('artist-result-add');
+    var artistSearch = document.getElementById('artist-result-search');
+
+    if (exists === 'true') {
+      artistAdd.classList.add('inactive');
+      artistSearch.classList.remove('inactive');
+    } else {
+      artistAdd.classList.remove('inactive');
+      artistSearch.classList.add('inactive');
+    }
   };
 
   // invoke immediately
