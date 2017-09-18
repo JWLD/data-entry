@@ -12,5 +12,6 @@ module.exports = [
 
   discogsController.artists,
 
-  dbController.artists
+  dbController.checkArtist,
+  dbController.addArtist
 ];

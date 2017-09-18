@@ -143,13 +143,15 @@ var dataEntry = (function() {
 
       var data = {
         name: selection[0].dataset.name,
-        id: selection[0].dataset.id
+        id: Number(selection[0].dataset.id)
       };
 
-      dataEntry.makeRequest('POST', '/db-artists', data, function(err, res) {
+      dataEntry.makeRequest('POST', '/db-artists', JSON.stringify(data), function(err, res) {
         if (err) return console.log('Error adding artist to DB: ', err);
 
-        console.log(res);
+        // change active buttons
+        document.getElementById('artist-result-add').classList.add('inactive');
+        document.getElementById('artist-result-search').classList.remove('inactive');
       });
     });
   };
