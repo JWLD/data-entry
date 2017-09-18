@@ -10,7 +10,7 @@ dbQueries.checkArtist = (connPool, id, callback) => {
 
 dbQueries.addArtist = (connPool, data, callback) => {
   connPool.query(
-    'INSERT INTO artists (name, discogs_id) SELECT $1, $2 WHERE NOT EXISTS (SELECT discogs_id FROM artists WHERE discogs_id = $2)',
+    'INSERT INTO artists (name, discogs_id) VALUES ($1, $2)',
     [
       data.name,
       data.id

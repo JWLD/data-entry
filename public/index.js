@@ -135,9 +135,29 @@ var dataEntry = (function() {
     }
   };
 
+  var addArtistListener = function() {
+    document.getElementById('artist-result-add').addEventListener('click', function() {
+      var selection = Array.from(document.getElementsByClassName('artist-result')).filter((artist) => {
+        return artist.classList.contains('select-artist');
+      });
+
+      var data = {
+        name: selection[0].dataset.name,
+        id: selection[0].dataset.id
+      };
+
+      dataEntry.makeRequest('POST', '/db-artists', data, function(err, res) {
+        if (err) return console.log('Error adding artist to DB: ', err);
+
+        console.log(res);
+      });
+    });
+  };
+
   // invoke immediately
   configureLoginButtons();
   artistListener();
+  addArtistListener();
 
   // export
   return {
