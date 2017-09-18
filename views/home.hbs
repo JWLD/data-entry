@@ -1,3 +1,37 @@
 {{>login}}
 
+<section class="step">
+  <div class="artist-search-headers">
+    <h1 class="step-header">1. Search For A Composer</h1>
+
+    <div class="result-count-wrap">
+      <span>Number of Results</span>
+      <select id="result-count" class="result-count">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3" selected>3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select>
+    </div>
+  </div>
+
+  <input type="text" id="artist-search" class="artist-search-input" autocomplete="off">
+</section>
+
+<section class="step">
+  <h1 class="step-header">2. Choose A Composer</h1>
+
+  <div class="artist-results-wrap" id="artist-results"></div>
+
+  <div class="artist-result-button-wrap">
+    <button id="artist-result-add" class="artist-result-button inactive">Add To Database</button>
+    <button id="artist-result-search" class="artist-result-button inactive">Search For Albums</button>
+  </div>
+</section>
+
 <script type="text/javascript" src="./index.js"></script>

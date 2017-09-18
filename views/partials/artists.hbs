@@ -1,0 +1,12 @@
+{{#each data}}
+  <div class="artist-result" data-id="{{id}}" data-name="{{title}}">
+    <button
+      class="artist-image"
+      style="background-image:url('{{thumb}}')"
+      data-id="{{id}}"
+      data-name="{{title}}"
+    ></button>
+    <a class="artist-link" target="_blank" href="https://www.discogs.com{{uri}}">{{title}}</a>
+    <div class="artist-overlay hidden">Checking Database</div>
+  </div>
+{{/each}}

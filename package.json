@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run src/start.js",
-    "dev": "nodemon src/start.js",
+    "dev": "nodemon -r dotenv/config src/start.js",
     "sass": "./node_modules/.bin/node-sass ./public/sass/main.scss ./public/sass/style.css"
   },
   "repository": {
@@ -26,6 +26,7 @@
     "inert": "^4.2.1",
     "jsonwebtoken": "^7.4.3",
     "node-sass": "^4.5.3",
+    "pg": "^7.3.0",
     "vision": "^4.1.1"
   }
 }

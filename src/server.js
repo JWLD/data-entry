@@ -1,5 +1,3 @@
-'use strict';
-
 // external packages
 const Hapi = require('hapi');
 const Inert = require('inert'); // serve static files
@@ -8,7 +6,7 @@ const Handlebars = require('handlebars');
 const Path = require('path');
 
 // local includes
-const routes = require('./routes');
+const routes = require('./controllers');
 
 // create new hapi server
 const server = new Hapi.Server();

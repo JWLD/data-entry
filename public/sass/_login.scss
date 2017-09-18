@@ -6,7 +6,7 @@
 }
 
 .login-wrap:hover .spotify-icon {
-  background-color: #333;
+  color: #a1e600;
 }
 
 .spotify-icon {
@@ -14,10 +14,8 @@
   padding: 7px;
   width: 60px;
   font-size: 60px;
-  background-color: #222;
+  background-color: #111;
   color: #84bd00;
-  border-left: 3px solid #eee;
-  border-bottom: 3px solid #eee;
 }
 
 .spotify-icon:hover {
@@ -37,17 +35,15 @@
   height: 100%;
   padding: 8px;
   transition: 0.2s;
-  background-color: #222;
+  background-color: #111;
   width: $login-button-width;
-  border-left: 3px solid #eee;
-  border-bottom: 3px solid #eee;
 }
 
 .login-button {
   flex-grow: 1;
   color: white;
   font: 15px Gidole;
-  border: 1px solid #eee;
+  border: 1px solid white;
   width: 100%;
 }
 
