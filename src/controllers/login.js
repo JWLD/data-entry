@@ -12,7 +12,7 @@ loginController.login = {
     const queries = Querystring.stringify({
       client_id: process.env.SPOTIFY_ID,
       response_type: 'code',
-      redirect_uri: 'http://localhost:3000/redirect'
+      redirect_uri: `${request.info.referrer}redirect`
     });
 
     return reply.redirect(`https://accounts.spotify.com/authorize?${queries}`);
