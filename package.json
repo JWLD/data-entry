@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run src/start.js",
+    "start": "node src/start.js",
     "dev": "nodemon -r dotenv/config src/start.js",
     "sass": "./node_modules/.bin/node-sass ./public/sass/main.scss ./public/sass/style.css"
   },
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/JWLD/data-entry.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jack Davies",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/JWLD/data-entry/issues"
