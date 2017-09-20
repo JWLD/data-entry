@@ -1,7 +1,7 @@
 {{>login}}
 
 <section class="step">
-  <div class="artist-search-headers">
+  <div class="step-header-wrap">
     <h1 class="step-header">1. Search For A Composer</h1>
 
     <div class="result-count-wrap">
@@ -24,7 +24,9 @@
 </section>
 
 <section class="step">
-  <h1 class="step-header">2. Choose A Composer</h1>
+  <div class="step-header-wrap">
+    <h1 class="step-header">2. Choose A Composer</h1>
+  </div>
 
   <div class="artist-results-wrap" id="artist-results"></div>
 
@@ -35,24 +37,27 @@
 </section>
 
 <section class="step">
-  <h1 class="step-header">3. Add Albums</h1>
+  <div class="step-header-wrap">
+    <h1 class="step-header">3. Add Albums</h1>
+    <span class="album-counter">0 / 0</span>
+  </div>
 
   <div class="album-results-wrap">
     <div class="album-input-wrap discogs">
       <h2>GENERAL INFO</h2>
       <div class="album-field-wrap">
         <label for="album-input-title">Title</label>
-        <input type="text" name="title" id="album-input-title">
+        <input type="text" name="title" class="good" id="album-input-title">
       </div>
 
       <div class="album-field-wrap">
         <label for="album-input-year">Year</label>
-        <input type="text" name="year" id="album-input-year">
+        <input type="text" name="year" class="good" id="album-input-year">
       </div>
 
       <div class="album-field-wrap">
         <label for="album-input-category">Category</label>
-        <select name="category" id="album-input-category">
+        <select name="category" class="bad" id="album-input-category">
           <option>Choose A Category</option>
           <option value="film">Film</option>
           <option value="game">Game</option>
@@ -62,7 +67,7 @@
 
       <div class="album-field-wrap">
         <label for="album-input-discogs_id">Discogs ID</label>
-        <input type="text" name="discogs_id" id="album-input-discogs_id">
+        <input type="text" name="discogs_id" class="good" id="album-input-discogs_id">
       </div>
     </div>
 
@@ -70,17 +75,17 @@
       <h2>MEDIA INFO</h2>
       <div class="media-button-wrap">
         <button class="media-button">Query Spotify</button>
-        <button class="media-button">View Result</button>
+        <button class="media-button">Check Result</button>
       </div>
 
       <div class="album-field-wrap">
         <label for="album-input-spotify_id">Spotify ID</label>
-        <input type="text" name="spotify_id" id="album-input-spotify_id">
+        <input type="text" name="spotify_id" class="neutral" id="album-input-spotify_id">
       </div>
 
       <div class="album-field-wrap">
-        <label for="album-input-year">Artwork URL</label>
-        <input type="text" name="year" id="album-input-year" value="">
+        <label for="album-input-artwork">Artwork URL</label>
+        <input type="text" name="year" class="neutral" id="album-input-artwork">
       </div>
     </div>
   </div>

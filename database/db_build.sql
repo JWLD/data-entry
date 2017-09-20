@@ -22,6 +22,6 @@ CREATE TABLE albums (
 INSERT INTO artists (name, discogs_id) VALUES
   ('Hans Zimmer', 59656);
 INSERT INTO albums (title, year, type, discogs_id, artist_id) VALUES
-  ('The Lion King', 1994, 'Film', 1211512, 59656);
+  ('The Lion King', 1994, 'film', 1211512, 59656);
 
 COMMIT;

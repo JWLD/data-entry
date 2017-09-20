@@ -9,13 +9,17 @@ body {
   padding-bottom: 40px;
 }
 
+.step-header-wrap {
+  align-items: flex-end;
+  padding-bottom: 12px;
+}
+
 .step-header {
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
   color: white;
   font: bold 36px Gidole;
-  margin-bottom: 12px;
 }
 
 // Artist Search
@@ -25,14 +29,6 @@ body {
   padding: 8px;
   font: bold 25px Gidole;
   border-radius: 3px;
-}
-
-.artist-search-headers {
-  align-items: flex-end;
-}
-
-.result-count-wrap {
-  margin-bottom: 12px;
 }
 
 .result-count-wrap span {
@@ -137,10 +133,6 @@ body {
   color: #444;
 }
 
-.hidden {
-  display: none;
-}
-
 // Album Result Section
 
 .album-results-wrap {
@@ -198,6 +190,8 @@ body {
   border-radius: 2px;
   padding: 8px;
   font: bold 20px Gidole;
+  border-width: 3px;
+  border-style: solid;
 }
 
 .media-button {
@@ -215,4 +209,29 @@ body {
 
 .media-button:first-child {
   margin-right: 16px;
+}
+
+.album-counter {
+  color: white;
+  font: bold 24px Gidole;
+  min-width: 100px;
+  justify-content: flex-end;
+}
+
+// Generic
+
+.hidden {
+  display: none;
+}
+
+.good {
+  border-color: #0C6;
+}
+
+.bad {
+  border-color: #FF4D4D;
+}
+
+.neutral {
+  border-color: gray;
 }
