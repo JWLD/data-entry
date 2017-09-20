@@ -14,8 +14,8 @@ body {
   align-items: flex-start;
   width: 100%;
   color: white;
-  font: bold 40px Gidole;
-  margin-bottom: 16px;
+  font: bold 36px Gidole;
+  margin-bottom: 12px;
 }
 
 // Artist Search
@@ -32,7 +32,7 @@ body {
 }
 
 .result-count-wrap {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .result-count-wrap span {
@@ -111,13 +111,13 @@ body {
   pointer-events: none;
 }
 
-// Arist Result Buttons
+// Action Buttons
 
-.artist-result-button-wrap {
+.action-button-wrap {
   justify-content: space-between;
 }
 
-.artist-result-button {
+.action-button {
   height: 50px;
   width: calc(50% - 8px);
   font: bold 20px Gidole;
@@ -127,7 +127,7 @@ body {
   border-radius: 3px;
 }
 
-.artist-result-button:hover {
+.action-button:hover {
   background-color: #333;
 }
 
@@ -139,4 +139,80 @@ body {
 
 .hidden {
   display: none;
+}
+
+// Album Result Section
+
+.album-results-wrap {
+  justify-content: flex-start;
+  width: 100%;
+  border: 16px solid #333;
+  background-color: #333;
+  border-radius: 3px;
+  margin-bottom: 16px;
+}
+
+.album-input-wrap {
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #222;
+  height: 304px;
+  width: 100%;
+  border-radius: 2px;
+  padding: 16px;
+}
+
+.album-input-wrap:not(:last-child) {
+  margin-right: 16px;
+}
+
+.album-input-wrap h2 {
+  color: white;
+  font: bold 25px Gidole;
+  margin-bottom: 16px;
+}
+
+.album-field-wrap, .media-button-wrap {
+  height: 45px;
+  width: 100%;
+}
+
+.album-field-wrap:not(:last-child), .media-button-wrap {
+  margin-bottom: 16px;
+}
+
+.album-results-wrap label {
+  font: bold 20px Gidole;
+  color: white;
+  width: 120px;
+  height: 100%;
+  background-color: #333;
+  padding: 8px;
+  border-radius: 2px;
+}
+
+.album-results-wrap input, .album-results-wrap select {
+  flex-grow: 1;
+  margin-left: 16px;
+  height: 100%;
+  border-radius: 2px;
+  padding: 8px;
+  font: bold 20px Gidole;
+}
+
+.media-button {
+  font: bold 20px Gidole;
+  color: white;
+  background-color: #333;
+  height: 100%;
+  flex-grow: 1;
+  border-radius: 2px;
+}
+
+.media-button:hover {
+  background-color: #444;
+}
+
+.media-button:first-child {
+  margin-right: 16px;
 }
