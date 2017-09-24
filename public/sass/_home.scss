@@ -135,7 +135,16 @@ body {
 
 // Album Result Section
 
+.slider {
+  position: relative;
+}
+
+.step .albums {
+  margin-top: 352px;
+}
+
 .album-results-wrap {
+  @include absolute;
   justify-content: flex-start;
   width: 100%;
   border: 16px solid #333;
