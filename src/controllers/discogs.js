@@ -33,3 +33,12 @@ discogsController.artists = {
     });
   }
 };
+
+// ALBUMS ROUTE - QUERY DISCOGS FOR ALBUMS
+discogsController.albums = {
+  method: 'GET',
+  path: '/discogs-albums',
+  handler: (request, reply) => {
+    reply(request.query.q);
+  }
+}

@@ -90,6 +90,9 @@ var dataEntry = (function() {
             }
           });
 
+          // update state
+          state.selectedArtist = button.dataset.id;
+
           // query DB to see if artist exists or not
           if (selected.classList.contains('select-artist')) {
             // show overlay with querying DB message
@@ -106,6 +109,7 @@ var dataEntry = (function() {
         // when user deselects the current artist
         } else {
           selected.getElementsByClassName('artist-overlay')[0].classList.add('hidden');
+          state.selectedArtist = null;
         }
       });
     });
@@ -189,8 +193,19 @@ var dataEntry = (function() {
 
   var state = {
     totalAlbums: 0,
-    currentAlbum: 1
+    currentAlbum: 1,
+    selectedArtist: null
   };
+
+  document.getElementById('artist-result-search').addEventListener('click', function() {
+    var url = '/discogs-albums?q=' + state.selectedArtist;
+    
+    dataEntry.makeRequest('GET', url, null, function(err, res) {
+      if (err) return console.log(err);
+
+      console.log(res);
+    });
+  });
 
   // invoke immediately
   configureLoginButtons();

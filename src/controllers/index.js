@@ -11,6 +11,7 @@ module.exports = [
   loginController.redirect,
 
   discogsController.artists,
+  discogsController.albums,
 
   dbController.checkArtist,
   dbController.addArtist
