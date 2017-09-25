@@ -159,19 +159,46 @@ var dataEntry = (function() {
   });
 
   var nextAlbum = function() {
-    var slider = document.querySelector('.slider');
+    if (state.currentAlbum < state.totalAlbums) {
+      var slider = document.querySelector('.slider');
 
-    // move slider to the right by window width
-    var currentPos = Number(slider.style.transform.slice(11, -3));
-    var newPos = currentPos += window.innerWidth;
-    slider.style.transform = 'translateX(' + newPos + 'px)';
+      // move slider to the right by window width
+      var currentPos = Number(slider.style.transform.slice(11, -3));
+      var newPos = currentPos += window.innerWidth;
+      slider.style.transform = 'translateX(' + newPos + 'px)';
+
+      incrementCounter();
+    }
+  };
+
+  var setUpCounter = function() {
+    var albums = document.querySelectorAll('.album-results-wrap');
+
+    if (albums.length) {
+      var counter = document.getElementById('album-counter');
+      counter.innerHTML = '1 / ' + albums.length;
+      state.totalAlbums = albums.length;
+    }
+  };
+
+  var incrementCounter = function() {
+    var counter = document.getElementById('album-counter');
+    state.currentAlbum++;
+    counter.innerHTML = state.currentAlbum + ' / ' + state.totalAlbums;
+  };
+
+  var state = {
+    totalAlbums: 0,
+    currentAlbum: 1
   };
 
   // invoke immediately
   configureLoginButtons();
+  setUpCounter();
 
   // export
   return {
-    makeRequest: makeRequest
+    makeRequest: makeRequest,
+    state: state
   }
 })();
