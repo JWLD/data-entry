@@ -156,6 +156,21 @@ var dataEntry = (function() {
     });
   };
 
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'n') {
+      nextAlbum();
+    }
+  });
+
+  var nextAlbum = function() {
+    var slider = document.querySelector('.slider');
+
+    // move slider to the right by window width
+    var currentPos = Number(slider.style.transform.slice(11, -3));
+    var newPos = currentPos += window.innerWidth;
+    slider.style.transform = 'translateX(' + newPos + 'px)';
+  };
+
   // invoke immediately
   configureLoginButtons();
   artistListener();

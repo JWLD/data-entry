@@ -137,20 +137,17 @@ body {
 
 .slider {
   position: relative;
-}
-
-.step .albums {
-  margin-top: 352px;
+  justify-content: flex-end;
+  transition: 1s cubic-bezier(.6, -.1, .6, .1);
 }
 
 .album-results-wrap {
-  @include absolute;
   justify-content: flex-start;
-  width: 100%;
+  min-width: 76vw;
   border: 16px solid #333;
   background-color: #333;
   border-radius: 3px;
-  margin-bottom: 16px;
+  margin: 0 0 16px 24vw;
 }
 
 .album-input-wrap {
@@ -243,4 +240,8 @@ body {
 
 .neutral {
   border-color: gray;
+}
+
+.no-transition {
+  transition-duration: 0s;
 }
