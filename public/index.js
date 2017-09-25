@@ -52,23 +52,21 @@ var dataEntry = (function() {
     }
   };
 
-  var artistListener = function() {
-    // submit artist search
-    document.getElementById('artist-search').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        var count = document.getElementById('result-count').value;
-        var url = '/discogs-artists?q=' + e.target.value + '&count=' + count;
+  // submit artist search
+  document.getElementById('artist-search').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      var count = document.getElementById('result-count').value;
+      var url = '/discogs-artists?q=' + e.target.value + '&count=' + count;
 
-        dataEntry.makeRequest('GET', url, null, function(err, res) {
-          if (err) return console.log('Artist discogs search error: ', err);
+      dataEntry.makeRequest('GET', url, null, function(err, res) {
+        if (err) return console.log('Artist discogs search error: ', err);
 
-          document.getElementById('artist-results').innerHTML = res;
+        document.getElementById('artist-results').innerHTML = res;
 
-          artistPicListeners();
-        });
-      }
-    });
-  };
+        artistPicListeners();
+      });
+    }
+  });
 
   var artistPicListeners = function() {
     var artistButtons = Array.from(document.getElementsByClassName('artist-image'));
@@ -135,26 +133,24 @@ var dataEntry = (function() {
     }
   };
 
-  var addArtistListener = function() {
-    document.getElementById('artist-result-add').addEventListener('click', function() {
-      var selection = Array.from(document.getElementsByClassName('artist-result')).filter((artist) => {
-        return artist.classList.contains('select-artist');
-      });
-
-      var data = {
-        name: selection[0].dataset.name,
-        id: Number(selection[0].dataset.id)
-      };
-
-      dataEntry.makeRequest('POST', '/db-artists', JSON.stringify(data), function(err, res) {
-        if (err) return console.log('Error adding artist to DB: ', err);
-
-        // change active buttons
-        document.getElementById('artist-result-add').classList.add('inactive');
-        document.getElementById('artist-result-search').classList.remove('inactive');
-      });
+  document.getElementById('artist-result-add').addEventListener('click', function() {
+    var selection = Array.from(document.getElementsByClassName('artist-result')).filter((artist) => {
+      return artist.classList.contains('select-artist');
     });
-  };
+
+    var data = {
+      name: selection[0].dataset.name,
+      id: Number(selection[0].dataset.id)
+    };
+
+    dataEntry.makeRequest('POST', '/db-artists', JSON.stringify(data), function(err, res) {
+      if (err) return console.log('Error adding artist to DB: ', err);
+
+      // change active buttons
+      document.getElementById('artist-result-add').classList.add('inactive');
+      document.getElementById('artist-result-search').classList.remove('inactive');
+    });
+  });
 
   document.addEventListener('keydown', function(e) {
     if (e.key === 'n') {
@@ -173,8 +169,6 @@ var dataEntry = (function() {
 
   // invoke immediately
   configureLoginButtons();
-  artistListener();
-  addArtistListener();
 
   // export
   return {
