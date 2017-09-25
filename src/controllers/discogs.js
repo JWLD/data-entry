@@ -39,6 +39,20 @@ discogsController.albums = {
   method: 'GET',
   path: '/discogs-albums',
   handler: (request, reply) => {
-    reply(request.query.q);
+    // build discogs request
+    const options = {
+      url: `https://api.discogs.com/artists/${request.query.q}/releases?per_page=100`,
+      headers: { 'User-Agent': 'https://github.com/JWLD' },
+      json: true
+    };
+
+    // make request to discogs
+    Request(options, (error, response, body) => {
+      if (error) return reply(`Discogs API Albums Error: ${error}`);
+
+      const html = Compile('albums', body.releases);
+
+      return reply(html);
+    });
   }
-}
+};
