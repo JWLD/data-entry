@@ -199,21 +199,22 @@ var dataEntry = (function() {
 
   document.getElementById('artist-result-search').addEventListener('click', function() {
     var url = '/discogs-albums?q=' + state.selectedArtist;
-    
+
     dataEntry.makeRequest('GET', url, null, function(err, res) {
       if (err) return console.log(err);
 
-      console.log(res);
+      document.getElementById('slider').innerHTML = res;
+
+      setUpCounter();
     });
   });
 
   // invoke immediately
   configureLoginButtons();
-  setUpCounter();
 
   // export
   return {
     makeRequest: makeRequest,
     state: state
-  }
+  };
 })();

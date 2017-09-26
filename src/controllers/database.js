@@ -9,7 +9,7 @@ dbController.checkArtist = {
   path: '/db-artists',
   handler: (request, reply) => {
     dbQueries.checkArtist(connPool, request.query.q, (err, res) => {
-      if (err) return reply(`ERROR CHECKING ARTIST: ${err}`);
+      if (err) return reply(`ERROR CHECKING ARTIST: ${err}`).code(500);
 
       // return true or false depending on whether artist exists or not
       return reply(res.rows[0].exists);
