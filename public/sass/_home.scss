@@ -167,12 +167,15 @@ body {
 .album-input-wrap h2 {
   color: white;
   font: bold 25px Gidole;
-  margin-bottom: 16px;
 }
 
 .album-field-wrap, .media-button-wrap {
   height: 45px;
   width: 100%;
+}
+
+.album-field-wrap:nth-child(2), .media-button-wrap {
+  margin-top: 16px;
 }
 
 .album-field-wrap:not(:last-child), .media-button-wrap {
@@ -198,6 +201,12 @@ body {
   font: bold 20px Gidole;
   border-width: 3px;
   border-style: solid;
+}
+
+.link-icon {
+  color: white;
+  font-size: 25px;
+  margin-left: 8px;
 }
 
 .media-button {

@@ -1,7 +1,11 @@
 {{#each data}}
   <div class="album-results-wrap">
     <div class="album-input-wrap discogs">
-      <h2>GENERAL INFO</h2>
+      <div>
+        <h2>GENERAL INFO</h2>
+        <a class="fa fa-external-link-square link-icon" target="_blank" href="https://www.discogs.com/release/{{main_release}}"></a>
+      </div>
+
       <div class="album-field-wrap">
         <label for="album-input-title">Title</label>
         <input type="text" name="title" class="good" id="album-input-title" value="{{title}}">
