@@ -156,12 +156,6 @@ var dataEntry = (function() {
     });
   });
 
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'n') {
-      nextAlbum();
-    }
-  });
-
   var nextAlbum = function() {
     if (state.currentAlbum < state.totalAlbums) {
       var slider = document.querySelector('.slider');
@@ -207,6 +201,16 @@ var dataEntry = (function() {
 
       setUpCounter();
     });
+  });
+
+  // event listener for adding an album to DB
+  document.getElementById('album-result-add').addEventListener('click', function() {
+    nextAlbum();
+  });
+
+  // event listener for skipping an album
+  document.getElementById('album-result-skip').addEventListener('click', function() {
+    nextAlbum();
   });
 
   // invoke immediately
