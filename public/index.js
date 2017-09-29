@@ -191,6 +191,7 @@ var dataEntry = (function() {
     selectedArtist: null
   };
 
+  // make request for artist's albums
   document.getElementById('artist-result-search').addEventListener('click', function() {
     var url = '/discogs-albums?q=' + state.selectedArtist;
 
@@ -200,8 +201,24 @@ var dataEntry = (function() {
       document.getElementById('slider').innerHTML = res;
 
       setUpCounter();
+      addDropdownListeners();
     });
   });
+
+  // add listeners to category select dropdowns - color border depending on value
+  var addDropdownListeners = function() {
+    var dropdowns = Array.from(document.querySelectorAll('.category-select')).forEach(function(dropdown) {
+      dropdown.addEventListener('change', function(e) {
+        if (e.target.value) {
+          e.target.classList.remove('bad');
+          e.target.classList.add('good');
+        } else {
+          e.target.classList.remove('good');
+          e.target.classList.add('bad');
+        }
+      });
+    });
+  }
 
   // event listener for adding an album to DB
   document.getElementById('album-result-add').addEventListener('click', function() {
