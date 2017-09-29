@@ -127,12 +127,6 @@ body {
   background-color: #333;
 }
 
-.inactive {
-  pointer-events: none;
-  cursor: default;
-  color: #444;
-}
-
 // Album Result Section
 
 .slider {
@@ -251,6 +245,8 @@ body {
   border-color: gray;
 }
 
-.no-transition {
-  transition-duration: 0s;
+.inactive {
+  pointer-events: none;
+  cursor: default;
+  color: #444;
 }
