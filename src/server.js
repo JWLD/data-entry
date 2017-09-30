@@ -20,8 +20,7 @@ server.connection({
 server.state('jwt', {
   ttl: 1000 * 60 * 60 * 24, // 24 hours
   isSecure: false,
-  isHttpOnly: false,
-  encoding: 'base64json'
+  isHttpOnly: false
 });
 
 server.state('user', {
