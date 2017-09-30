@@ -242,7 +242,22 @@ var dataEntry = (function() {
         dataEntry.makeRequest('GET', url, null, function(err, res) {
           if (err) return console.log(err);
 
-          console.log(res);
+          var idInput = document.getElementById('album-input-spotify_id-' + currentIndex);
+          var artInput = document.getElementById('album-input-artwork-' + currentIndex);
+          var check = document.getElementById('check-result-' + currentIndex);
+
+          var parsed = JSON.parse(res);
+
+          idInput.value = parsed.id;
+          idInput.classList.remove('neutral');
+          idInput.classList.add('good');
+
+          artInput.value = parsed.imgUrl;
+          artInput.classList.remove('neutral');
+          artInput.classList.add('good');
+
+          check.classList.remove('inactive');
+          check.href = 'https://open.spotify.com/album/' + parsed.id;
         });
       });
     });
