@@ -143,7 +143,7 @@ body {
   transition: 1s cubic-bezier(.6, -.1, .6, .1);
 }
 
-.album-results-wrap {
+.album-form {
   justify-content: flex-start;
   min-width: 76vw;
   border: 16px solid #333;
@@ -184,7 +184,7 @@ body {
   margin-bottom: 16px;
 }
 
-.album-results-wrap label {
+.album-form label {
   font: bold 20px Gidole;
   color: white;
   width: 120px;
@@ -194,7 +194,7 @@ body {
   border-radius: 2px;
 }
 
-.album-results-wrap input, .album-results-wrap select {
+.album-form input, .album-form select {
   flex-grow: 1;
   margin-left: 16px;
   height: 100%;

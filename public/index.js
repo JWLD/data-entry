@@ -186,7 +186,7 @@ var dataEntry = (function() {
   };
 
   var setUpCounter = function() {
-    var albums = document.querySelectorAll('.album-results-wrap');
+    var albums = document.querySelectorAll('.album-form');
 
     if (albums.length) {
       var counter = document.getElementById('album-counter');
@@ -213,28 +213,17 @@ var dataEntry = (function() {
       document.getElementById('album-result-skip').classList.remove('inactive');
 
       setUpCounter();
-      addAlbumListeners();
+      spotifyListeners();
     });
   });
 
   // add listeners to each album slide
-  var addAlbumListeners = function() {
-    // category dropdown listeners
-    Array.from(document.querySelectorAll('.category-select')).forEach(function(dropdown) {
-      dropdown.addEventListener('change', function(e) {
-        if (e.target.value) {
-          e.target.classList.remove('bad');
-          e.target.classList.add('good');
-        } else {
-          e.target.classList.remove('good');
-          e.target.classList.add('bad');
-        }
-      });
-    });
-
+  var spotifyListeners = function() {
     // query spotify listeners
     Array.from(document.querySelectorAll('.media-button.query')).forEach(function(button) {
-      button.addEventListener('click', function() {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+
         var currentIndex = state.totalAlbums - state.currentAlbum;
         var albumName = document.getElementById('album-input-title-' + currentIndex).value;
         var url = encodeURI('/spotify?artist=' + state.selectedArtist.name + '&album=' + albumName);
@@ -264,7 +253,35 @@ var dataEntry = (function() {
   }
 
   // event listener for adding an album to DB
-  document.getElementById('album-result-add').addEventListener('click', function() {
+  document.getElementById('album-result-add').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    // extract correct form data
+    var currentIndex = state.totalAlbums - state.currentAlbum;
+    var form = document.getElementById('album-form-' + currentIndex).elements;
+
+    var data = {
+      title: form.title.value,
+      year: form.year.value,
+      category: form.category.value,
+      discogs_id: form.discogs_id.value,
+      spotify_id: form.spotify_id.value,
+      spotify_img: form.spotify_img.value,
+      artist_id: state.selectedArtist.id
+    };
+
+    // convert empty fields to null values
+    if (!data.spotify_id) data.spotify_id = null;
+    if (!data.spotify_img) data.spotify_img = null;
+
+    // submit form
+    dataEntry.makeRequest('POST', '/db-albums', data, function(err, res) {
+      if (err) return console.log(err);
+
+      console.log(res);
+    });
+
+    // load next slide
     nextAlbum();
   });
 

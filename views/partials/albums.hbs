@@ -1,5 +1,5 @@
 {{#each data}}
-  <div class="album-results-wrap" id="album-wrap-{{@index}}">
+  <form class="album-form" id="album-form-{{@index}}">
     <div class="album-input-wrap discogs">
       <div>
         <h2>GENERAL INFO</h2>
@@ -18,8 +18,7 @@
 
       <div class="album-field-wrap">
         <label for="album-input-category-{{@index}}">Category</label>
-        <select name="category" class="category-select bad" id="album-input-category-{{@index}}">
-          <option value="">Choose A Category</option>
+        <select name="category" class="good" id="album-input-category-{{@index}}">
           <option value="film">Film</option>
           <option value="game">Game</option>
           <option value="tv">TV</option>
@@ -46,8 +45,8 @@
 
       <div class="album-field-wrap">
         <label for="album-input-artwork-{{@index}}">Artwork URL</label>
-        <input type="text" name="year" class="neutral" id="album-input-artwork-{{@index}}">
+        <input type="text" name="spotify_img" class="neutral" id="album-input-artwork-{{@index}}">
       </div>
     </div>
-  </div>
+  </form>
 {{/each}}
