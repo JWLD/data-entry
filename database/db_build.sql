@@ -21,7 +21,7 @@ CREATE TABLE albums (
 
 INSERT INTO artists (name, discogs_id) VALUES
   ('Hans Zimmer', 59656);
-INSERT INTO albums (title, year, category, discogs_id, artist_id) VALUES
-  ('The Lion King', 1994, 'film', 1211512, 59656);
+INSERT INTO albums (title, year, category, discogs_id, spotify_id, spotify_img, artist_id) VALUES
+  ('The Lion King', 1994, 'film', 1211512, '6V642KcHwzOSyYGwH58kgO', 'https://i.scdn.co/image/2d089ded23bcc0b28720b6ed247d9cce1e124d04', 59656);
 
 COMMIT;
