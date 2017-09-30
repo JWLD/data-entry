@@ -10,6 +10,12 @@ var dataEntry = (function() {
     if (e.keyCode === 192) {
       console.log(dataEntry.state);
     }
+
+    if (e.key === 'q') {
+      dataEntry.makeRequest('GET', '/spotify', null, function(err, res) {
+        console.log(res);
+      });
+    }
   });
 
   // XHR request function
