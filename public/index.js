@@ -1,4 +1,17 @@
 var dataEntry = (function() {
+  var state = {
+    totalAlbums: 0,
+    currentAlbum: 1,
+    selectedArtist: null
+  };
+
+  // view state
+  document.addEventListener('keydown', function(e) {
+    if (e.keyCode === 192) {
+      console.log(dataEntry.state);
+    }
+  });
+
   // XHR request function
   var makeRequest = function(method, url, data, callback) {
     var xhr = new XMLHttpRequest();
@@ -91,7 +104,10 @@ var dataEntry = (function() {
           });
 
           // update state
-          state.selectedArtist = button.dataset.id;
+          state.selectedArtist = {
+            name: button.dataset.name,
+            id: button.dataset.id
+          }
 
           // query DB to see if artist exists or not
           if (selected.classList.contains('select-artist')) {
@@ -185,15 +201,9 @@ var dataEntry = (function() {
     counter.innerHTML = state.currentAlbum + ' / ' + state.totalAlbums;
   };
 
-  var state = {
-    totalAlbums: 0,
-    currentAlbum: 1,
-    selectedArtist: null
-  };
-
   // make request for artist's albums
   document.getElementById('artist-result-search').addEventListener('click', function() {
-    var url = '/discogs-albums?q=' + state.selectedArtist;
+    var url = '/discogs-albums?q=' + state.selectedArtist.id;
 
     dataEntry.makeRequest('GET', url, null, function(err, res) {
       if (err) return console.log(err);

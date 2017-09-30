@@ -1,5 +1,5 @@
 {{#each data}}
-  <div class="album-results-wrap">
+  <div class="album-results-wrap" id="album-wrap-{{@index}}" data-name={{title}}>
     <div class="album-input-wrap discogs">
       <div>
         <h2>GENERAL INFO</h2>
@@ -7,28 +7,32 @@
       </div>
 
       <div class="album-field-wrap">
-        <label for="album-input-title">Title</label>
-        <input type="text" name="title" class="good" id="album-input-title" value="{{title}}">
+        <label>Title
+          <input type="text" name="title" class="good" value="{{title}}">
+        </label>
       </div>
 
       <div class="album-field-wrap">
-        <label for="album-input-year">Year</label>
-        <input type="text" name="year" class="good" id="album-input-year" value="{{year}}">
+        <label>Year
+          <input type="text" name="year" class="good" value="{{year}}">
+        </label>
       </div>
 
       <div class="album-field-wrap">
-        <label for="album-input-category">Category</label>
-        <select name="category" class="category-select bad" id="album-input-category">
-          <option value="">Choose A Category</option>
-          <option value="film">Film</option>
-          <option value="game">Game</option>
-          <option value="tv">TV</option>
-        </select>
+        <label>Category
+          <select name="category" class="category-select bad">
+            <option value="">Choose A Category</option>
+            <option value="film">Film</option>
+            <option value="game">Game</option>
+            <option value="tv">TV</option>
+          </select>
+        </label>
       </div>
 
       <div class="album-field-wrap">
-        <label for="album-input-discogs_id">Discogs ID</label>
-        <input type="text" name="discogs_id" class="good" id="album-input-discogs_id" value={{main_release}}>
+        <label>Discogs ID
+          <input type="text" name="discogs_id" class="good" value={{main_release}}>
+        </label>
       </div>
     </div>
 
@@ -40,13 +44,15 @@
       </div>
 
       <div class="album-field-wrap">
-        <label for="album-input-spotify_id">Spotify ID</label>
-        <input type="text" name="spotify_id" class="neutral" id="album-input-spotify_id">
+        <label>Spotify ID
+          <input type="text" name="spotify_id" class="neutral">
+        </label>
       </div>
 
       <div class="album-field-wrap">
-        <label for="album-input-artwork">Artwork URL</label>
-        <input type="text" name="year" class="neutral" id="album-input-artwork">
+        <label for="album-input-artwork">Artwork URL
+          <input type="text" name="year" class="neutral">
+        </label>
       </div>
     </div>
   </div>
