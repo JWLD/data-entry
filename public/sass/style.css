@@ -6,13 +6,13 @@
   font-family: Gidole;
   src: url("../fonts/gidole.otf"); }
 
-body, button, a, div, h1, input, img, span {
+body, button, a, div, h1, input, img, span, label, select, h2, form {
   margin: 0;
   padding: 0;
   border: 0;
   box-sizing: border-box; }
 
-header, div, a, i, label, span {
+header, div, a, i, label, span, form {
   display: flex;
   justify-content: center;
   align-items: center; }
@@ -94,25 +94,22 @@ body {
   justify-content: flex-start;
   padding-bottom: 40px; }
 
+.step-header-wrap {
+  align-items: flex-end;
+  padding-bottom: 12px; }
+
 .step-header {
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
   color: white;
-  font: bold 40px Gidole;
-  margin-bottom: 16px; }
+  font: bold 36px Gidole; }
 
 .artist-search-input {
   width: 100%;
   padding: 8px;
   font: bold 25px Gidole;
   border-radius: 3px; }
-
-.artist-search-headers {
-  align-items: flex-end; }
-
-.result-count-wrap {
-  margin-bottom: 16px; }
 
 .result-count-wrap span {
   font: bold 24px Gidole;
@@ -131,6 +128,13 @@ body {
   background-color: #333;
   border-radius: 3px;
   overflow: scroll;
+  margin-bottom: 16px; }
+
+.album-placeholder {
+  width: 100%;
+  height: 336px;
+  background-color: #333;
+  border-radius: 3px;
   margin-bottom: 16px; }
 
 .artist-result {
@@ -180,10 +184,10 @@ body {
   font: bold 20px Gidole;
   pointer-events: none; }
 
-.artist-result-button-wrap {
+.action-button-wrap {
   justify-content: space-between; }
 
-.artist-result-button {
+.action-button {
   height: 50px;
   width: calc(50% - 8px);
   font: bold 20px Gidole;
@@ -192,13 +196,105 @@ body {
   padding: 10px;
   border-radius: 3px; }
 
-.artist-result-button:hover {
+.action-button:hover {
   background-color: #333; }
+
+.slider {
+  position: relative;
+  justify-content: flex-end;
+  transition: 1s cubic-bezier(0.6, -0.1, 0.6, 0.1); }
+
+.album-form {
+  justify-content: flex-start;
+  min-width: 76vw;
+  border: 16px solid #333;
+  background-color: #333;
+  border-radius: 3px;
+  margin: 0 0 16px 24vw; }
+
+.album-input-wrap {
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #222;
+  height: 304px;
+  width: 100%;
+  border-radius: 2px;
+  padding: 16px; }
+
+.album-input-wrap:not(:last-child) {
+  margin-right: 16px; }
+
+.album-input-wrap h2 {
+  color: white;
+  font: bold 25px Gidole; }
+
+.album-field-wrap, .media-button-wrap {
+  height: 45px;
+  width: 100%; }
+
+.album-field-wrap:nth-child(2), .media-button-wrap {
+  margin-top: 16px; }
+
+.album-field-wrap:not(:last-child), .media-button-wrap {
+  margin-bottom: 16px; }
+
+.album-form label {
+  font: bold 20px Gidole;
+  color: white;
+  width: 120px;
+  height: 100%;
+  background-color: #333;
+  padding: 8px;
+  border-radius: 2px; }
+
+.album-form input, .album-form select {
+  flex-grow: 1;
+  margin-left: 16px;
+  height: 100%;
+  border-radius: 2px;
+  padding: 8px;
+  font: bold 20px Gidole;
+  border-width: 3px;
+  border-style: solid; }
+
+.link-icon {
+  color: white;
+  font-size: 25px;
+  margin-left: 8px; }
+
+.media-button {
+  font: bold 20px Gidole;
+  color: white;
+  background-color: #333;
+  height: 100%;
+  flex-grow: 1;
+  border-radius: 2px; }
+
+.media-button:hover {
+  background-color: #444; }
+
+.media-button:first-child {
+  margin-right: 16px; }
+
+.album-counter {
+  color: white;
+  font: bold 24px Gidole;
+  min-width: 100px;
+  justify-content: flex-end; }
+
+.hidden {
+  display: none; }
+
+.good {
+  border-color: #0C6; }
+
+.bad {
+  border-color: #FF4D4D; }
+
+.neutral {
+  border-color: gray; }
 
 .inactive {
   pointer-events: none;
   cursor: default;
   color: #444; }
-
-.hidden {
-  display: none; }
