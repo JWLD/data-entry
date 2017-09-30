@@ -39,8 +39,7 @@ server.register([Inert, Vision], (err) => {
     relativeTo: Path.join(__dirname, '..', 'views'),
     layoutPath: './layouts',
     layout: 'main',
-    partialsPath: './partials',
-    helpersPath: './helpers'
+    partialsPath: './partials'
   });
 });
 

@@ -236,7 +236,7 @@ var dataEntry = (function() {
     Array.from(document.querySelectorAll('.media-button.query')).forEach(function(button) {
       button.addEventListener('click', function() {
         var currentIndex = state.totalAlbums - state.currentAlbum;
-        var albumName = document.getElementById('album-wrap-' + currentIndex).dataset.name.replace(/-/g, ' ');
+        var albumName = document.getElementById('album-input-title-' + currentIndex).value;
         var url = encodeURI('/spotify?artist=' + state.selectedArtist.name + '&album=' + albumName);
 
         dataEntry.makeRequest('GET', url, null, function(err, res) {

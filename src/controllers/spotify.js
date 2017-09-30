@@ -35,7 +35,7 @@ spotifyController.findAlbum = {
           imgUrl: topResult.images[1].url
         });
       } else {
-        return reply('No albums found on Spotify :(');
+        return reply('No albums found on Spotify :(').code(404);
       }
     });
   }
