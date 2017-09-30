@@ -201,12 +201,13 @@ var dataEntry = (function() {
       document.getElementById('slider').innerHTML = res;
 
       setUpCounter();
-      addDropdownListeners();
+      addAlbumListeners();
     });
   });
 
-  // add listeners to category select dropdowns - color border depending on value
-  var addDropdownListeners = function() {
+  // add listeners to each album slide
+  var addAlbumListeners = function() {
+    // category dropdown listeners
     var dropdowns = Array.from(document.querySelectorAll('.category-select')).forEach(function(dropdown) {
       dropdown.addEventListener('change', function(e) {
         if (e.target.value) {
@@ -218,7 +219,20 @@ var dataEntry = (function() {
         }
       });
     });
+
+    // query spotify listeners
+    var querySpotify = Array.from(document.querySelectorAll('.media-button.query')).forEach(function(button) {
+      button.addEventListener('click', function() {
+        dataEntry.makeRequest('GET', '/spotify', null, function(err, res) {
+          if (err) return console.log(err);
+
+          console.log(res);
+        });
+      });
+    });
   }
+
+  addAlbumListeners();
 
   // event listener for adding an album to DB
   document.getElementById('album-result-add').addEventListener('click', function() {
