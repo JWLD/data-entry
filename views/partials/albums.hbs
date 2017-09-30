@@ -1,0 +1,52 @@
+{{#each data}}
+  <form class="album-form" id="album-form-{{@index}}">
+    <div class="album-input-wrap discogs">
+      <div>
+        <h2>GENERAL INFO</h2>
+        <a class="fa fa-external-link-square link-icon" target="_blank" href="https://www.discogs.com/release/{{main_release}}"></a>
+      </div>
+
+      <div class="album-field-wrap">
+        <label for="album-input-title-{{@index}}">Title</label>
+        <input type="text" name="title" class="good" id="album-input-title-{{@index}}" value="{{title}}">
+      </div>
+
+      <div class="album-field-wrap">
+        <label for="album-input-year-{{@index}}">Year</label>
+        <input type="text" name="year" class="good" id="album-input-year-{{@index}}" value="{{year}}">
+      </div>
+
+      <div class="album-field-wrap">
+        <label for="album-input-category-{{@index}}">Category</label>
+        <select name="category" class="good" id="album-input-category-{{@index}}">
+          <option value="film">Film</option>
+          <option value="game">Game</option>
+          <option value="tv">TV</option>
+        </select>
+      </div>
+
+      <div class="album-field-wrap">
+        <label for="album-input-discogs_id-{{@index}}">Discogs ID</label>
+        <input type="text" name="discogs_id" class="good" id="album-input-discogs_id-{{@index}}" value={{main_release}}>
+      </div>
+    </div>
+
+    <div class="album-input-wrap spotify">
+      <h2>MEDIA INFO</h2>
+      <div class="media-button-wrap">
+        <button class="media-button query">Query Spotify</button>
+        <a class="media-button inactive" target="_blank" id="check-result-{{@index}}">Check Result</a>
+      </div>
+
+      <div class="album-field-wrap">
+        <label for="album-input-spotify_id-{{@index}}">Spotify ID</label>
+        <input type="text" name="spotify_id" class="neutral" id="album-input-spotify_id-{{@index}}">
+      </div>
+
+      <div class="album-field-wrap">
+        <label for="album-input-artwork-{{@index}}">Artwork URL</label>
+        <input type="text" name="spotify_img" class="neutral" id="album-input-artwork-{{@index}}">
+      </div>
+    </div>
+  </form>
+{{/each}}

@@ -67,7 +67,7 @@ const getUserInfo = (tokenBody, reply) => {
     const token = JsonWebToken.sign(tokenBody, process.env.SECRET);
 
     reply.redirect('/')
-    .state('jwt', token)
-    .state('user', parsed.id);
+      .state('jwt', token)
+      .state('user', parsed.id);
   });
 };

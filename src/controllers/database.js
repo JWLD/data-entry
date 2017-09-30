@@ -9,7 +9,7 @@ dbController.checkArtist = {
   path: '/db-artists',
   handler: (request, reply) => {
     dbQueries.checkArtist(connPool, request.query.q, (err, res) => {
-      if (err) return reply(`ERROR CHECKING ARTIST: ${err}`);
+      if (err) return reply(`ERROR CHECKING ARTIST: ${err}`).code(500);
 
       // return true or false depending on whether artist exists or not
       return reply(res.rows[0].exists);
@@ -29,3 +29,15 @@ dbController.addArtist = {
     });
   }
 };
+
+// ALBUMS ROUTE - ADD NEW ALBUM TO DB
+dbController.addAlbum = {
+  method: 'POST',
+  path: '/db-albums',
+  handler: (request, reply) => {
+    dbQueries.addAlbum(connPool, JSON.parse(request.payload), (err, res) => {
+      if (err) return reply(`ERROR ADDING ALBUM: ${err}`);
+      return reply(res);
+    });
+  }
+}

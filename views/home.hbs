@@ -1,7 +1,8 @@
 {{>login}}
 
+<!-- SEARCH -->
 <section class="step">
-  <div class="artist-search-headers">
+  <div class="step-header-wrap">
     <h1 class="step-header">1. Search For A Composer</h1>
 
     <div class="result-count-wrap">
@@ -20,18 +21,39 @@
     </div>
   </div>
 
-  <input type="text" id="artist-search" class="artist-search-input" autocomplete="off">
+  <input type="text" id="artist-search" class="artist-search-input" autocomplete="off" value="Hans Zimmer">
 </section>
 
+<!-- ARTISTS -->
 <section class="step">
-  <h1 class="step-header">2. Choose A Composer</h1>
+  <div class="step-header-wrap">
+    <h1 class="step-header">2. Choose A Composer</h1>
+  </div>
 
   <div class="artist-results-wrap" id="artist-results"></div>
 
-  <div class="artist-result-button-wrap">
-    <button id="artist-result-add" class="artist-result-button inactive">Add To Database</button>
-    <button id="artist-result-search" class="artist-result-button inactive">Search For Albums</button>
+  <div class="action-button-wrap">
+    <button id="artist-result-add" class="action-button inactive">Add To Database</button>
+    <button id="artist-result-search" class="action-button inactive">Search For Albums</button>
   </div>
 </section>
 
+<!-- ALBUMS -->
+<section class="step">
+  <div class="step-header-wrap">
+    <h1 class="step-header">3. Add Albums</h1>
+    <span id="album-counter" class="album-counter">0 / 0</span>
+  </div>
+
+  <div id="slider" class="slider">
+    <div class="album-placeholder"></div>
+  </div>
+
+  <div class="action-button-wrap albums">
+    <button id="album-result-add" class="action-button inactive">Add To Database</button>
+    <button id="album-result-skip" class="action-button inactive">Skip This Album</button>
+  </div>
+</section>
+
+<!-- SCRIPTS -->
 <script type="text/javascript" src="./index.js"></script>
