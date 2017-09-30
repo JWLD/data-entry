@@ -1,5 +1,5 @@
 {{#each data}}
-  <div class="album-results-wrap" id="album-wrap-{{@index}}" data-name={{title}}>
+  <div class="album-results-wrap" id="album-wrap-{{@index}}" data-name={{concat title}}>
     <div class="album-input-wrap discogs">
       <div>
         <h2>GENERAL INFO</h2>
@@ -7,18 +7,18 @@
       </div>
 
       <div class="album-field-wrap">
-        <label for="album-input-title">Title</label>
-        <input type="text" name="title" class="good" id="album-input-title" value="{{title}}">
+        <label for="album-input-title-{{@index}}">Title</label>
+        <input type="text" name="title" class="good" id="album-input-title-{{@index}}" value="{{title}}">
       </div>
 
       <div class="album-field-wrap">
-        <label for="album-input-year">Year</label>
-        <input type="text" name="year" class="good" id="album-input-year" value="{{year}}">
+        <label for="album-input-year-{{@index}}">Year</label>
+        <input type="text" name="year" class="good" id="album-input-year-{{@index}}" value="{{year}}">
       </div>
 
       <div class="album-field-wrap">
-        <label for="album-input-category">Category</label>
-        <select name="category" class="category-select bad" id="album-input-category">
+        <label for="album-input-category-{{@index}}">Category</label>
+        <select name="category" class="category-select bad" id="album-input-category-{{@index}}">
           <option value="">Choose A Category</option>
           <option value="film">Film</option>
           <option value="game">Game</option>
@@ -27,26 +27,26 @@
       </div>
 
       <div class="album-field-wrap">
-        <label for="album-input-discogs_id">Discogs ID</label>
-        <input type="text" name="discogs_id" class="good" id="album-input-discogs_id" value={{main_release}}>
+        <label for="album-input-discogs_id-{{@index}}">Discogs ID</label>
+        <input type="text" name="discogs_id" class="good" id="album-input-discogs_id-{{@index}}" value={{main_release}}>
       </div>
     </div>
 
     <div class="album-input-wrap spotify">
       <h2>MEDIA INFO</h2>
       <div class="media-button-wrap">
-        <button class="media-button">Query Spotify</button>
-        <button class="media-button">Check Result</button>
+        <button class="media-button query">Query Spotify</button>
+        <button class="media-button check">Check Result</button>
       </div>
 
       <div class="album-field-wrap">
-        <label for="album-input-spotify_id">Spotify ID</label>
-        <input type="text" name="spotify_id" class="neutral" id="album-input-spotify_id">
+        <label for="album-input-spotify_id-{{@index}}">Spotify ID</label>
+        <input type="text" name="spotify_id" class="neutral" id="album-input-spotify_id-{{@index}}">
       </div>
 
       <div class="album-field-wrap">
-        <label for="album-input-artwork">Artwork URL</label>
-        <input type="text" name="year" class="neutral" id="album-input-artwork">
+        <label for="album-input-artwork-{{@index}}">Artwork URL</label>
+        <input type="text" name="year" class="neutral" id="album-input-artwork-{{@index}}">
       </div>
     </div>
   </div>

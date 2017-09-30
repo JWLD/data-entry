@@ -10,12 +10,6 @@ var dataEntry = (function() {
     if (e.keyCode === 192) {
       console.log(dataEntry.state);
     }
-
-    if (e.key === 'q') {
-      dataEntry.makeRequest('GET', '/spotify', null, function(err, res) {
-        console.log(res);
-      });
-    }
   });
 
   // XHR request function
@@ -215,6 +209,8 @@ var dataEntry = (function() {
       if (err) return console.log(err);
 
       document.getElementById('slider').innerHTML = res;
+      document.getElementById('album-result-add').classList.remove('inactive');
+      document.getElementById('album-result-skip').classList.remove('inactive');
 
       setUpCounter();
       addAlbumListeners();
@@ -224,7 +220,7 @@ var dataEntry = (function() {
   // add listeners to each album slide
   var addAlbumListeners = function() {
     // category dropdown listeners
-    var dropdowns = Array.from(document.querySelectorAll('.category-select')).forEach(function(dropdown) {
+    Array.from(document.querySelectorAll('.category-select')).forEach(function(dropdown) {
       dropdown.addEventListener('change', function(e) {
         if (e.target.value) {
           e.target.classList.remove('bad');
@@ -237,9 +233,13 @@ var dataEntry = (function() {
     });
 
     // query spotify listeners
-    var querySpotify = Array.from(document.querySelectorAll('.media-button.query')).forEach(function(button) {
+    Array.from(document.querySelectorAll('.media-button.query')).forEach(function(button) {
       button.addEventListener('click', function() {
-        dataEntry.makeRequest('GET', '/spotify', null, function(err, res) {
+        var currentIndex = state.totalAlbums - state.currentAlbum;
+        var albumName = document.getElementById('album-wrap-' + currentIndex).dataset.name.replace(/-/g, ' ');
+        var url = encodeURI('/spotify?artist=' + state.selectedArtist.name + '&album=' + albumName);
+
+        dataEntry.makeRequest('GET', url, null, function(err, res) {
           if (err) return console.log(err);
 
           console.log(res);
@@ -247,8 +247,6 @@ var dataEntry = (function() {
       });
     });
   }
-
-  addAlbumListeners();
 
   // event listener for adding an album to DB
   document.getElementById('album-result-add').addEventListener('click', function() {
