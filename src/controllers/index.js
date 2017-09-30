@@ -16,6 +16,7 @@ module.exports = [
 
   dbController.checkArtist,
   dbController.addArtist,
+  dbController.addAlbum,
 
   spotifyController.findAlbum
 ];

@@ -275,7 +275,7 @@ var dataEntry = (function() {
     if (!data.spotify_img) data.spotify_img = null;
 
     // submit form
-    dataEntry.makeRequest('POST', '/db-albums', data, function(err, res) {
+    dataEntry.makeRequest('POST', '/db-albums', JSON.stringify(data), function(err, res) {
       if (err) return console.log(err);
 
       console.log(res);

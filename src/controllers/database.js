@@ -29,3 +29,15 @@ dbController.addArtist = {
     });
   }
 };
+
+// ALBUMS ROUTE - ADD NEW ALBUM TO DB
+dbController.addAlbum = {
+  method: 'POST',
+  path: '/db-albums',
+  handler: (request, reply) => {
+    dbQueries.addAlbum(connPool, JSON.parse(request.payload), (err, res) => {
+      if (err) return reply(`ERROR ADDING ALBUM: ${err}`);
+      return reply(res);
+    });
+  }
+}
