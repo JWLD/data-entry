@@ -58,7 +58,7 @@ var artists = (function() {
 
             var url = '/db-artists?q=' + button.dataset.id;
 
-            dataEntry.showMessage('Checking whether artist exists in database...');
+            dataEntry.showMessage('Checking database for artist...');
 
             dataEntry.makeRequest('GET', url, null, function(err, res) {
               if (err) {
