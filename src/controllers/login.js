@@ -5,50 +5,43 @@ const JsonWebToken = require('jsonwebtoken');
 const loginController = module.exports = {};
 
 // LOGIN ROUTE - REDIRECT TO SPOTIFY AUTH PAGE
-loginController.login = {
-  method: 'GET',
-  path: '/login',
-  handler: (request, reply) => {
-    const queries = Querystring.stringify({
-      client_id: process.env.SPOTIFY_ID,
-      response_type: 'code',
-      redirect_uri: `${request.info.referrer}redirect`
-    });
+loginController.login = (req, res) => {
+  const queries = Querystring.stringify({
+    client_id: process.env.SPOTIFY_ID,
+    response_type: 'code',
+    redirect_uri: `${req.headers.referer}redirect`
+  });
 
-    return reply.redirect(`https://accounts.spotify.com/authorize?${queries}`);
-  }
+  return res.redirect(`https://accounts.spotify.com/authorize?${queries}`);
 };
 
 // REDIRECT ROUTE - POST REQUEST TO SPOTIFY FOR ACCESS TOKEN
-loginController.redirect = {
-  method: 'GET',
-  path: '/redirect',
-  handler: (request, reply) => {
-    const data = {
-      grant_type: 'authorization_code',
-      code: request.query.code,
-      redirect_uri: 'http://localhost:3000/redirect',
-      client_id: process.env.SPOTIFY_ID,
-      client_secret: process.env.SPOTIFY_SECRET
-    };
+loginController.redirect = (req, res) => {
+  console.log(req);
+  const data = {
+    grant_type: 'authorization_code',
+    code: req.query.code,
+    redirect_uri: 'http://localhost:3000/redirect',
+    client_id: process.env.SPOTIFY_ID,
+    client_secret: process.env.SPOTIFY_SECRET
+  };
 
-    const options = {
-      method: 'POST',
-      url: 'https://accounts.spotify.com/api/token',
-      json: true,
-      form: data
-    };
+  const options = {
+    method: 'POST',
+    url: 'https://accounts.spotify.com/api/token',
+    json: true,
+    form: data
+  };
 
-    Request(options, (error, response, body) => {
-      if (error) return console.log(error);
+  Request(options, (error, response, body) => {
+    if (error) return console.log(error);
 
-      getUserInfo(body, reply);
-    });
-  }
+    getUserInfo(body, res);
+  });
 };
 
 // USE ACCESS TOKEN TO GET USER INFO FROM SPOTIFY API
-const getUserInfo = (tokenBody, reply) => {
+const getUserInfo = (tokenBody, res) => {
   const options = {
     method: 'GET',
     url: 'https://api.spotify.com/v1/me',
@@ -66,8 +59,9 @@ const getUserInfo = (tokenBody, reply) => {
     tokenBody.user = parsed.id;
     const token = JsonWebToken.sign(tokenBody, process.env.SECRET);
 
-    reply.redirect('/')
-      .state('jwt', token)
-      .state('user', parsed.id);
+    res.cookie('jwt', token);
+    res.cookie('user', parsed.id);
+    
+    res.redirect('/');
   });
 };

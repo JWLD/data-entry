@@ -1,10 +1,7 @@
 require('dotenv').config();
 
-const server = require('./server');
+const app = require('./app.js');
 
-// start the server
-server.start((err) => {
-  if (err) throw err;
-
-  console.log(`Incredible things happening on port ${server.info.port}!`);
+app.listen(app.get('port'), () => {
+  console.log(`Server running at ${app.get('port')}`);
 });
