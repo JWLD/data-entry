@@ -120,9 +120,9 @@ var albums = (function() {
     if (!data.spotify_img) data.spotify_img = null;
 
     dataEntry.showMessage('Adding album to the database...');
-    console.log(data);
+
     // submit form
-    dataEntry.makeRequest('POST', '/db-albums', JSON.stringify(data), function(err, res) {
+    dataEntry.makeRequest('POST', '/db-albums', data, function(err, res) {
       if (err) {
         dataEntry.showMessage('Error: ', err);
         return console.log(err);
