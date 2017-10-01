@@ -25,7 +25,8 @@ var dataEntry = (function() {
     }
     xhr.open(method, url);
     if (method === 'POST') {
-      xhr.send(data);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify(data));
     } else {
       xhr.send();
     }

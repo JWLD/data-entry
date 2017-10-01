@@ -18,10 +18,15 @@ app.engine('hbs', Handlebars({
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'hbs');
 
+// third-party
 app.use(CookieParser());
 app.use(BodyParser.json());
-app.use(BodyParser.urlencoded({ extended: true }));
+app.use(BodyParser.urlencoded({ extended: false }));
+
+// built-in
 app.use(Express.static('public'));
+
+// custom
 app.use(router);
 
 module.exports = app;

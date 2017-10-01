@@ -14,18 +14,10 @@ Router.get('/redirect', loginController.redirect);
 Router.get('/discogs-artists', discogsController.artists);
 Router.get('/discogs-albums', discogsController.albums);
 
-module.exports = Router;
+Router.get('/db-artists', dbController.checkArtist);
+Router.post('/db-artists', dbController.addArtist);
+Router.post('/db-albums', dbController.addAlbum);
 
-// module.exports = [
-//   loginController.login,
-//   loginController.redirect,
-//
-//   discogsController.artists,
-//   discogsController.albums,
-//
-//   dbController.checkArtist,
-//   dbController.addArtist,
-//   dbController.addAlbum,
-//
-//   spotifyController.findAlbum
-// ];
+Router.get('/spotify', spotifyController.findAlbum);
+
+module.exports = Router;
