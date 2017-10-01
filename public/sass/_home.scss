@@ -22,6 +22,26 @@ body {
   font: bold 36px Gidole;
 }
 
+.mock {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  background-color: white;
+  -webkit-appearance:none;
+  width: 32px;
+  height: 32px;
+  border-radius: 2px;
+  background-color: maroon;
+}
+
+.mock:checked {
+  background-color: green;
+}
+
+.mock:focus {
+  outline: none;
+}
+
 // Artist Search
 
 .artist-search-input {

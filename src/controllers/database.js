@@ -6,7 +6,7 @@ const dbController = module.exports = {};
 // ARTISTS ROUTE - CHECK IF ARTIST EXISTS IN DB
 dbController.checkArtist = (req, res) => {
   dbQueries.checkArtist(connPool, req.query.q, (err, result) => {
-    if (err) return res.send(`ERROR CHECKING ARTIST: ${err}`);
+    if (err) return res.status(500).send(`Error checking DB for artist: ${err}`);
 
     // return true or false depending on whether artist exists or not
     return res.send(result.rows[0].exists);
@@ -16,7 +16,7 @@ dbController.checkArtist = (req, res) => {
 // ARTISTS ROUTE - ADD NEW ARTIST TO DB
 dbController.addArtist = (req, res) => {
   dbQueries.addArtist(connPool, req.body, (err, result) => {
-    if (err) return res.send(`ERROR ADDING ARTIST: ${err}`);
+    if (err) return res.status(500).send(`Error adding artist to DB: ${err}`);
 
     return res.send(result);
   });
@@ -25,7 +25,7 @@ dbController.addArtist = (req, res) => {
 // ALBUMS ROUTE - ADD NEW ALBUM TO DB
 dbController.addAlbum = (req, res) => {
   dbQueries.addAlbum(connPool, req.body, (err, result) => {
-    if (err) return res.send(`ERROR ADDING ALBUM: ${err}`);
+    if (err) return res.status(500).send(`Error adding album to DB: ${err}`);
 
     return res.send(result);
   });
