@@ -3,8 +3,15 @@ var albums = (function() {
   document.getElementById('artist-result-search').addEventListener('click', function() {
     var url = '/discogs-albums?q=' + dataEntry.state.selectedArtist.id;
 
+    dataEntry.showMessage('Searching Discogs for albums...');
+
     dataEntry.makeRequest('GET', url, null, function(err, res) {
-      if (err) return console.log(err);
+      if (err) {
+        dataEntry.showMessage('Error: ' + err);
+        return console.log('Albums discogs search error: ', err);
+      }
+
+      dataEntry.showMessage('Success!');
 
       document.getElementById('slider').innerHTML = res;
       document.getElementById('album-result-add').classList.remove('inactive');
@@ -37,8 +44,15 @@ var albums = (function() {
         var albumName = document.getElementById('album-input-title-' + currentIndex).value;
         var url = encodeURI('/spotify?artist=' + dataEntry.state.selectedArtist.name + '&album=' + albumName);
 
+        dataEntry.showMessage('Searching Spotify for this album...');
+
         dataEntry.makeRequest('GET', url, null, function(err, res) {
-          if (err) return console.log(err);
+          if (err) {
+            dataEntry.showMessage('Error: ' + err);
+            return console.log('Spotify album search error: ', err);
+          }
+
+          dataEntry.showMessage('Success!');
 
           var idInput = document.getElementById('album-input-spotify_id-' + currentIndex);
           var artInput = document.getElementById('album-input-artwork-' + currentIndex);
@@ -104,9 +118,16 @@ var albums = (function() {
     if (!data.spotify_id) data.spotify_id = null;
     if (!data.spotify_img) data.spotify_img = null;
 
+    dataEntry.showMessage('Adding album to the database...');
+
     // submit form
     dataEntry.makeRequest('POST', '/db-albums', JSON.stringify(data), function(err, res) {
-      if (err) return console.log(err);
+      if (err) {
+        dataEntry.showMessage('Error: ', err);
+        return console.log('Error adding album to DB: ', err);
+      }
+
+      dataEntry.showMessage('Success!');
 
       console.log(res);
     });

@@ -10,11 +10,12 @@
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   transition: 0.3s;
-  font: 16px Gidole;
+  font: bold 16px Gidole;
   color: white;
   white-space: nowrap;
   overflow: scroll;
   padding: 8px;
+  z-index: 1;
 }
 
 .show-message {

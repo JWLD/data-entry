@@ -2,7 +2,8 @@ var dataEntry = (function() {
   var state = {
     totalAlbums: 0,
     currentAlbum: 1,
-    selectedArtist: null
+    selectedArtist: null,
+    timeout: null
   };
 
   // view state
@@ -36,8 +37,11 @@ var dataEntry = (function() {
     msgBox.classList.add('show-message');
     msgBox.innerHTML = msg;
 
+    // clear timeout if one exists
+    if (dataEntry.state.timeout) clearTimeout(dataEntry.state.timeout);
+
     // hide after x seconds
-    setTimeout(function() {
+    dataEntry.state.timeout = setTimeout(function() {
       msgBox.classList.remove('show-message');
       msgBox.innerHTML = null;
     }, 3000);
