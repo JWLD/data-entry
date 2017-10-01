@@ -5,10 +5,16 @@ var artists = (function() {
       var count = document.getElementById('result-count').value;
       var url = '/discogs-artists?q=' + e.target.value + '&count=' + count;
 
+      dataEntry.showMessage('Searching Discogs for artists...');
+
       dataEntry.makeRequest('GET', url, null, function(err, res) {
-        if (err) return console.log('Artist discogs search error: ', err);
+        if (err) {
+          dataEntry.showMessage('Discogs API error - see console.');
+          return console.log('Artist discogs search error: ', err);
+        }
 
         document.getElementById('artist-results').innerHTML = res;
+        dataEntry.showMessage('Success!');
 
         artistPicListeners();
       });
@@ -51,8 +57,13 @@ var artists = (function() {
 
             var url = '/db-artists?q=' + button.dataset.id;
 
+            dataEntry.showMessage('Checking whether artist exists in database...');
+
             dataEntry.makeRequest('GET', url, null, function(err, res) {
-              if (err) return console.log('Artist DB search error: ', err);
+              if (err) {
+                dataEntry.showMessage('Error: ', err);
+                return console.log('Artist DB search error: ', err);
+              }
 
               configureArtistButtons(res, selected);
             });
@@ -78,9 +89,11 @@ var artists = (function() {
 
     if (selection.length > 0) {
       if (exists === 'true') {
+        dataEntry.showMessage('Artist already exists in the database.');
         artistAdd.classList.add('inactive');
         artistSearch.classList.remove('inactive');
       } else {
+        dataEntry.showMessage('Artist doesn\'t exist in the database.');
         artistAdd.classList.remove('inactive');
         artistSearch.classList.add('inactive');
       }
@@ -96,8 +109,15 @@ var artists = (function() {
       id: dataEntry.state.selectedArtist.id
     };
 
+    dataEntry.showMessage('Adding artist to the database...');
+
     dataEntry.makeRequest('POST', '/db-artists', JSON.stringify(data), function(err, res) {
-      if (err) return console.log('Error adding artist to DB: ', err);
+      if (err) {
+        dataEntry.showMessage('Error: ', err);
+        return console.log('Error adding artist to DB: ', err);
+      }
+
+      dataEntry.showMessage('Success!');
 
       // change active buttons
       document.getElementById('artist-result-add').classList.add('inactive');

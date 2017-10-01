@@ -10,7 +10,7 @@ spotifyController.findAlbum = {
   path: '/spotify',
   handler: (request, reply) => {
     const jwt = Cookie.parse(request.headers.cookie || '').jwt;
-    if (!jwt) return reply('No access token provided').code(401);
+    if (!jwt) return reply('No access token provided.').code(401);
 
     const access_token = JsonWebToken.verify(jwt, process.env.SECRET).access_token;
 
@@ -35,7 +35,7 @@ spotifyController.findAlbum = {
           imgUrl: topResult.images[1].url
         });
       } else {
-        return reply('No albums found on Spotify :(').code(404);
+        return reply('No albums found on Spotify.').code(404);
       }
     });
   }
