@@ -21,7 +21,7 @@ app.set('view engine', 'hbs');
 // third-party
 app.use(CookieParser());
 app.use(BodyParser.json());
-app.use(BodyParser.urlencoded({ extended: false }));
+app.use(BodyParser.urlencoded({ extended: true }));
 
 // built-in
 app.use(Express.static('public'));

@@ -6,7 +6,7 @@ const spotifyController = module.exports = {};
 // SEARCH SPOTIFY FOR ALBUM
 spotifyController.findAlbum = (req, res) => {
   const jwt = req.cookies.jwt;
-  if (!jwt) return res.send('No access token provided.');
+  if (!jwt) return res.status(401).send('No Spotify access token provided');
 
   const access_token = JsonWebToken.verify(jwt, process.env.SECRET).access_token;
 
@@ -21,7 +21,7 @@ spotifyController.findAlbum = (req, res) => {
 
   // make request to spotify
   Request(options, (err, response, body) => {
-    if (err || body.error) return res.send(`Spotify Album Search Error: ${err || body.error.message}`);
+    if (err || body.error) return res.status(500).send(`Error searching Spotify for album: ${err || body.error.message}`);
 
     const topResult = body.albums.items[0];
 
@@ -31,7 +31,7 @@ spotifyController.findAlbum = (req, res) => {
         imgUrl: topResult.images[1].url
       });
     } else {
-      return res.send('No albums found on Spotify.');
+      return res.status(404).send('Album not found on Spotify');
     }
   });
 }

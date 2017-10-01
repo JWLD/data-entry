@@ -11,7 +11,7 @@ var artists = (function() {
       dataEntry.makeRequest('GET', url, null, function(err, res) {
         if (err) {
           dataEntry.showMessage('Discogs API error - see console.');
-          return console.log('Artist discogs search error: ', err);
+          return console.log(err);
         }
 
         document.getElementById('artist-results').innerHTML = res;
@@ -63,7 +63,7 @@ var artists = (function() {
             dataEntry.makeRequest('GET', url, null, function(err, res) {
               if (err) {
                 dataEntry.showMessage('Error: ', err);
-                return console.log('Artist DB search error: ', err);
+                return console.log(err);
               }
 
               configureArtistButtons(res, selected);
@@ -115,7 +115,7 @@ var artists = (function() {
     dataEntry.makeRequest('POST', '/db-artists', data, function(err, res) {
       if (err) {
         dataEntry.showMessage('Error: ', err);
-        return console.log('Error adding artist to DB: ', err);
+        return console.log(err);
       }
 
       dataEntry.showMessage('Success!');

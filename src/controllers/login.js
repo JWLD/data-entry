@@ -17,7 +17,6 @@ loginController.login = (req, res) => {
 
 // REDIRECT ROUTE - POST REQUEST TO SPOTIFY FOR ACCESS TOKEN
 loginController.redirect = (req, res) => {
-  console.log(req);
   const data = {
     grant_type: 'authorization_code',
     code: req.query.code,
@@ -34,7 +33,7 @@ loginController.redirect = (req, res) => {
   };
 
   Request(options, (error, response, body) => {
-    if (error) return console.log(error);
+    if (error) return res.status(500).send(`Error requesting access token from Spotify: ${error}`);
 
     getUserInfo(body, res);
   });
@@ -51,7 +50,7 @@ const getUserInfo = (tokenBody, res) => {
   };
 
   Request(options, (error, response, body) => {
-    if (error) return console.log(error);
+    if (error) return res.status(500).send(`Error getting user info from Spotify: ${error}`);
 
     const parsed = JSON.parse(body);
 
@@ -61,7 +60,7 @@ const getUserInfo = (tokenBody, res) => {
 
     res.cookie('jwt', token);
     res.cookie('user', parsed.id);
-    
+
     res.redirect('/');
   });
 };

@@ -26,7 +26,7 @@ discogsController.artists = (req, res) => {
   };
 
   Request(options, (error, response, body) => {
-    if (error) return reply(`Discogs API Artists Error: ${error}`).code(500);
+    if (error) return res.status(500).send(`Error searching Discogs for artists: ${error}`);
 
     // compile and return html partial using top n results
     const topResults = body.results.slice(0, req.query.count);
@@ -52,7 +52,7 @@ discogsController.albums = (req, res) => {
 
   // make request to discogs
   Request(options, (error, response, body) => {
-    if (error) return reply(`Discogs API Albums Error: ${error}`).code(500);
+    if (error) return res.status(500).send(`Error searching Discogs for albums: ${error}`);
 
     // process results - set main_release to id where main_release doesn't exist
     const releases = body.releases.map((release) => {
