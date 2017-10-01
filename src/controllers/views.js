@@ -2,30 +2,15 @@ const JsonWebToken = require('jsonwebtoken');
 
 const viewsController = module.exports = {};
 
-// SERVE STATIC FILES
-viewsController.static = {
-  method: 'GET',
-  path: '/{file*}',
-  handler: {
-    directory: {
-      path: './public'
-    }
-  }
-};
-
 // HOME ROUTE - RENDER HOME VIEW
-viewsController.home = {
-  method: 'GET',
-  path: '/',
-  handler: (request, reply) => {
-    if (request.state.jwt) {
-      const decoded = JsonWebToken.decode(request.state.jwt);
+viewsController.home = (req, res) => {
+  if (req.cookies.jwt) {
+    const decoded = JsonWebToken.decode(req.cookies.jwt);
 
-      reply.view('home', {
-        user: decoded.user
-      });
-    } else {
-      reply.view('home');
-    }
+    res.render('home', {
+      user: decoded.user
+    });
+  } else {
+    res.render('home');
   }
 };

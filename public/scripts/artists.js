@@ -111,7 +111,7 @@ var artists = (function() {
 
     dataEntry.showMessage('Adding artist to the database...');
 
-    dataEntry.makeRequest('POST', '/db-artists', JSON.stringify(data), function(err, res) {
+    dataEntry.makeRequest('POST', '/db-artists', data, function(err, res) {
       if (err) {
         dataEntry.showMessage('Error: ', err);
         return console.log('Error adding artist to DB: ', err);
