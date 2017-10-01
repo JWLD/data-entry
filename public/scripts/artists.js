@@ -10,7 +10,7 @@ var artists = (function() {
 
       dataEntry.makeRequest('GET', url, null, function(err, res) {
         if (err) {
-          dataEntry.showMessage('Discogs API error - see console.');
+          dataEntry.showMessage(err);
           return console.log(err);
         }
 
@@ -62,7 +62,7 @@ var artists = (function() {
 
             dataEntry.makeRequest('GET', url, null, function(err, res) {
               if (err) {
-                dataEntry.showMessage('Error: ', err);
+                dataEntry.showMessage(err);
                 return console.log(err);
               }
 
@@ -114,7 +114,7 @@ var artists = (function() {
 
     dataEntry.makeRequest('POST', '/db-artists', data, function(err, res) {
       if (err) {
-        dataEntry.showMessage('Error: ', err);
+        dataEntry.showMessage(err);
         return console.log(err);
       }
 
