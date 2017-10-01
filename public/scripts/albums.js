@@ -8,7 +8,7 @@ var albums = (function() {
 
     dataEntry.makeRequest('GET', url, null, function(err, res) {
       if (err) {
-        dataEntry.showMessage('Error: ' + err);
+        dataEntry.showMessage(err);
         return console.log(err);
       }
 
@@ -49,7 +49,7 @@ var albums = (function() {
 
         dataEntry.makeRequest('GET', url, null, function(err, res) {
           if (err) {
-            dataEntry.showMessage('Error: ' + err);
+            dataEntry.showMessage(err);
             return console.log(err);
           }
 
@@ -124,7 +124,7 @@ var albums = (function() {
     // submit form
     dataEntry.makeRequest('POST', '/db-albums', data, function(err, res) {
       if (err) {
-        dataEntry.showMessage('Error: ', err);
+        dataEntry.showMessage(err);
         return console.log(err);
       }
 
