@@ -1,11 +1,17 @@
 const Querystring = require('querystring');
 const Request = require('request');
 const Compile = require('../helpers/compile');
+const mockData = require('../../tests/mock.json');
 
 const discogsController = module.exports = {};
 
 // ARTISTS ROUTE - QUERY DISCOGS FOR ARTISTS
 discogsController.artists = (req, res) => {
+  if (req.query.mock) {
+    const html = Compile('artists', mockData.artists);
+    return res.send(html);
+  }
+
   // build request to Discogs API
   const queries = Querystring.stringify({
     type: 'artist',
@@ -32,6 +38,11 @@ discogsController.artists = (req, res) => {
 
 // ALBUMS ROUTE - QUERY DISCOGS FOR ALBUMS
 discogsController.albums = (req, res) => {
+  if (req.query.mock) {
+    const html = Compile('albums', mockData.albums);
+    return res.send(html);
+  }
+
   // build discogs request
   const options = {
     url: `https://api.discogs.com/artists/${req.query.q}/releases?per_page=25`,

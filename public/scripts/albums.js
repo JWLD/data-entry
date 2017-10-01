@@ -2,6 +2,7 @@ var albums = (function() {
   // make request for artist's albums
   document.getElementById('artist-result-search').addEventListener('click', function() {
     var url = '/discogs-albums?q=' + dataEntry.state.selectedArtist.id;
+    if (document.getElementById('mock').checked) url += '&mock=true';
 
     dataEntry.showMessage('Searching Discogs for albums...');
 

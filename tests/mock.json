@@ -1,0 +1,39 @@
+{
+  "artists": [
+    {
+      "thumb": "http://images.math.cnrs.fr/IMG/png/section8-image.png",
+      "id": "59656",
+      "title": "Hans Zimmer",
+      "uri": "/artist/59656-Hans-Zimmer"
+    },
+    {
+      "thumb": "http://images.math.cnrs.fr/IMG/png/section8-image.png",
+      "id": "341244",
+      "title": "John Powell",
+      "uri": "/artist/341244-John-Powell"
+    },
+    {
+      "thumb": "http://images.math.cnrs.fr/IMG/png/section8-image.png",
+      "id": "1393913",
+      "title": "Austin Wintory",
+      "uri": "/artist/1393913-Austin-Wintory"
+    }
+  ],
+  "albums": [
+    {
+      "title": "The Lion King",
+      "year": "1994",
+      "main_release": "1211512"
+    },
+    {
+      "title": "Paperhouse",
+      "year": "1988",
+      "main_release": "925068"
+    },
+    {
+      "title": "Radio Flyer",
+      "year": "1992",
+      "main_release": "6707213"
+    }
+  ]
+}

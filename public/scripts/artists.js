@@ -4,6 +4,7 @@ var artists = (function() {
     if (e.key === 'Enter') {
       var count = document.getElementById('result-count').value;
       var url = '/discogs-artists?q=' + e.target.value + '&count=' + count;
+      if (document.getElementById('mock').checked) url += '&mock=true';
 
       dataEntry.showMessage('Searching Discogs for artists...');
 
