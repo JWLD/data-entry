@@ -30,8 +30,22 @@ var dataEntry = (function() {
     }
   };
 
+  // display on-screen message to user
+  var showMessage = function(msg) {
+    var msgBox = document.getElementById('message-box');
+    msgBox.classList.add('show-message');
+    msgBox.innerHTML = msg;
+
+    // hide after x seconds
+    setTimeout(function() {
+      msgBox.classList.remove('show-message');
+      msgBox.innerHTML = null;
+    }, 3000);
+  }
+
   return {
+    state: state,
     makeRequest: makeRequest,
-    state: state
+    showMessage: showMessage
   };
 })();
