@@ -3,7 +3,8 @@ var dataEntry = (function() {
     totalAlbums: 0,
     currentAlbum: 1,
     selectedArtist: null,
-    timeout: null
+    timeout: null,
+    spotifyInfo: null
   };
 
   // view state
