@@ -11,6 +11,9 @@ Router.get('/', viewsController.home);
 Router.get('/login', loginController.login);
 Router.get('/redirect', loginController.redirect);
 
+Router.get('/discogs-artists', discogsController.artists);
+Router.get('/discogs-albums', discogsController.albums);
+
 module.exports = Router;
 
 // module.exports = [
