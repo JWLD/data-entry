@@ -27,6 +27,7 @@
     "express-handlebars": "^3.0.0",
     "jsonwebtoken": "^7.4.3",
     "node-sass": "^4.5.3",
-    "pg": "^7.3.0"
+    "pg": "^7.3.0",
+    "serve-favicon": "^2.4.5"
   }
 }
