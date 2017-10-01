@@ -41,12 +41,15 @@ var albums = (function() {
       button.addEventListener('click', function(e) {
         e.preventDefault();
 
+        // extract album name and build URL
         var currentIndex = dataEntry.state.totalAlbums - dataEntry.state.currentAlbum;
         var albumName = document.getElementById('album-input-title-' + currentIndex).value;
         var url = encodeURI('/spotify?artist=' + dataEntry.state.selectedArtist.name + '&album=' + albumName);
 
+        // display message to user
         dataEntry.showMessage('Searching Spotify for this album...');
 
+        // make request to spotify for album
         dataEntry.makeRequest('GET', url, null, function(err, res) {
           if (err) {
             dataEntry.showMessage(err);
@@ -55,23 +58,44 @@ var albums = (function() {
 
           dataEntry.showMessage('Success!');
 
-          var idInput = document.getElementById('album-input-spotify_id-' + currentIndex);
-          var artInput = document.getElementById('album-input-artwork-' + currentIndex);
+          // do stuff with the result
           var check = document.getElementById('check-result-' + currentIndex);
+          var artwork = document.getElementById('spotify-artwork-' + currentIndex);
 
           var parsed = JSON.parse(res);
 
-          idInput.value = parsed.id;
-          idInput.classList.remove('neutral');
-          idInput.classList.add('good');
-
-          artInput.value = parsed.imgUrl;
-          artInput.classList.remove('neutral');
-          artInput.classList.add('good');
+          dataEntry.state.spotifyInfo = {
+            id: parsed.id,
+            imgUrl: parsed.imgUrl
+          }
 
           check.classList.remove('inactive');
           check.href = 'https://open.spotify.com/album/' + parsed.id;
+
+          artwork.style.backgroundImage = 'url(\'' + parsed.imgUrl + '\')';
         });
+      });
+    });
+
+    // confirm spotify result listeners
+    Array.from(document.querySelectorAll('.media-button.confirm')).forEach(function(button) {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        var currentIndex = dataEntry.state.totalAlbums - dataEntry.state.currentAlbum;
+        var idInput = document.getElementById('album-input-spotify_id-' + currentIndex);
+        var artInput = document.getElementById('album-input-artwork-' + currentIndex);
+        var artwork = document.getElementById('spotify-artwork-' + currentIndex);
+
+        artwork.classList.toggle('art-select');
+
+        if (artwork.classList.contains('art-select')) {
+          idInput.value = dataEntry.state.spotifyInfo.id;
+          artInput.value = dataEntry.state.spotifyInfo.imgUrl;
+        } else {
+          idInput.value = null;
+          artInput.value = null;
+        }
       });
     });
   }

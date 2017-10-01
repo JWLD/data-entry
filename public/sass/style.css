@@ -267,14 +267,14 @@ body {
   color: white;
   font: bold 25px Gidole; }
 
-.album-field-wrap, .media-button-wrap {
+.album-field-wrap {
   height: 45px;
   width: 100%; }
 
-.album-field-wrap:nth-child(2), .media-button-wrap {
+.album-field-wrap:nth-child(2) {
   margin-top: 16px; }
 
-.album-field-wrap:not(:last-child), .media-button-wrap {
+.album-field-wrap:not(:last-child) {
   margin-bottom: 16px; }
 
 .album-form label {
@@ -292,34 +292,57 @@ body {
   height: 100%;
   border-radius: 2px;
   padding: 8px;
-  font: bold 20px Gidole;
-  border-width: 3px;
-  border-style: solid; }
+  font: bold 20px Gidole; }
 
 .link-icon {
   color: white;
   font-size: 25px;
   margin-left: 8px; }
 
+.media-button-wrap {
+  flex-direction: column;
+  height: 228px;
+  flex-grow: 1;
+  justify-content: flex-start; }
+
+.spotify-wrap {
+  margin-top: 16px;
+  width: 100%; }
+
 .media-button {
   font: bold 20px Gidole;
   color: white;
   background-color: #333;
-  height: 100%;
-  flex-grow: 1;
-  border-radius: 2px; }
+  height: 45px;
+  border-radius: 2px;
+  padding: 0 16px;
+  width: 100%; }
 
 .media-button:hover {
   background-color: #444; }
 
-.media-button:first-child {
-  margin-right: 16px; }
+.media-button:not(:last-child) {
+  margin-bottom: 16px; }
 
 .album-counter {
   color: white;
   font: bold 24px Gidole;
   min-width: 100px;
   justify-content: flex-end; }
+
+.spotify-art {
+  border-radius: 2px;
+  background-color: #333;
+  height: 228px;
+  width: 228px;
+  margin-right: 16px;
+  border: 8px solid #333;
+  background-size: cover;
+  background-repeat: none;
+  background-position: center; }
+
+.art-select {
+  border-color: #84bd00; }
 
 .hidden {
   display: none; }
