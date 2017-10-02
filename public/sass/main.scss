@@ -2,10 +2,12 @@
 @import 'vars';
 @import 'fonts';
 @import 'reset';
+@import 'home';
 
 // PARTIALS
 @import 'login';
 @import 'message';
 
-// VIEWS
-@import 'home';
+// SECTIONS
+@import 'artists';
+@import 'albums';
