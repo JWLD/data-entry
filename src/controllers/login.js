@@ -58,9 +58,32 @@ const getUserInfo = (tokenBody, res) => {
     tokenBody.user = parsed.id;
     const token = JsonWebToken.sign(tokenBody, process.env.SECRET);
 
-    res.cookie('jwt', token);
-    res.cookie('user', parsed.id);
+    res.cookie('jwt', token, { maxAge: 1000 * 60 * 60 * 24 * 7 }); // 1 week
+    res.cookie('user', parsed.id, { maxAge: 1000 * 60 * 60 * 24 * 7 }); // 1 week
 
     res.redirect('/');
+  });
+};
+
+// REFRESH ROUTE - GET NEW ACCESS TOKEN FROM SPOTIFY
+loginController.refresh = (req, res) => {
+  const data = {
+    grant_type: 'refresh_token',
+    refresh_token: req.query.token,
+    client_id: process.env.SPOTIFY_ID,
+    client_secret: process.env.SPOTIFY_SECRET
+  };
+
+  const options = {
+    method: 'POST',
+    url: 'https://accounts.spotify.com/api/token',
+    json: true,
+    form: data
+  };
+
+  Request(options, (error, response, body) => {
+    if (error) return res.status(500).send(`Error refreshing Spotify access token: ${error}`);
+
+    console.log('RESPONSE:', body);
   });
 };

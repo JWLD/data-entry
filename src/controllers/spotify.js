@@ -5,11 +5,11 @@ const spotifyController = module.exports = {};
 
 // SEARCH SPOTIFY FOR ALBUM
 spotifyController.findAlbum = (req, res) => {
-  console.log(req.url);
   const jwt = req.cookies.jwt;
   if (!jwt) return res.status(401).send('Missing access token - please log in to use this feature.');
 
-  const access_token = JsonWebToken.verify(jwt, process.env.SECRET).access_token;
+  // decode the JWT
+  const decoded = JsonWebToken.verify(jwt, process.env.SECRET);
 
   // search for various artists if this is the second attempt
   const artist = req.query.retry ? 'various artists' : req.query.artist;
@@ -19,13 +19,18 @@ spotifyController.findAlbum = (req, res) => {
     url: encodeURI(`https://api.spotify.com/v1/search?type=album&q=artist:${artist} album:${req.query.album}`),
     json: true,
     headers: {
-      Authorization: `Bearer ${access_token}`
+      Authorization: `Bearer ${decoded.access_token}`
     }
   };
 
   // make request to spotify
   Request(options, (err, response, body) => {
     if (err || body.error) return res.status(500).send(`Error searching Spotify for album: ${err || body.error.message}`);
+
+    // if expired and refresh token, then refresh
+    console.log(decoded.refresh_token);
+    // return res.redirect(`/refresh?token=${decoded.refresh_token}`);
+    // if expired and no refresh token, display error msg
 
     const topResult = body.albums.items[0];
 
