@@ -50,7 +50,57 @@
   </div>
 
   <div id="slider" class="slider">
-    <div class="album-placeholder"></div>
+    <!-- <div class="album-placeholder"></div> -->
+    <form class="album-form" id="album-form-{{@index}}">
+      <div class="album-input-wrap discogs">
+        <div>
+          <h2>GENERAL INFO</h2>
+          <a class="fa fa-external-link-square link-icon" target="_blank" href="https://www.discogs.com/release/{{main_release}}"></a>
+        </div>
+
+        <div class="album-field-wrap">
+          <label for="album-input-title-{{@index}}">Title</label>
+          <input type="text" name="title" id="album-input-title-{{@index}}" value="{{title}}">
+        </div>
+
+        <div class="album-field-wrap">
+          <label for="album-input-year-{{@index}}">Year</label>
+          <input type="text" name="year" id="album-input-year-{{@index}}" value="{{year}}">
+        </div>
+
+        <div class="album-field-wrap">
+          <label for="album-input-category-{{@index}}">Category</label>
+          <select name="category" id="album-input-category-{{@index}}">
+            <option value="film">Film</option>
+            <option value="game">Game</option>
+            <option value="trailer">Trailer</option>
+            <option value="tv">TV</option>
+          </select>
+        </div>
+
+        <div class="album-field-wrap">
+          <label for="album-input-discogs_id-{{@index}}">Discogs ID</label>
+          <input type="text" name="discogs_id" id="album-input-discogs_id-{{@index}}" value={{main_release}}>
+        </div>
+      </div>
+
+      <div class="album-input-wrap spotify">
+        <h2>MEDIA INFO</h2>
+
+        <div class="spotify-wrap">
+          <div class="spotify-art"></div>
+
+          <div class="media-button-wrap">
+            <button class="media-button query">Query Spotify</button>
+            <a class="media-button inactive" target="_blank" id="check-result-{{@index}}">Check Result</a>
+            <button class="media-button query">Confirm</button>
+          </div>
+        </div>
+
+        <input type="hidden" name="spotify_id" class="neutral" id="album-input-spotify_id-{{@index}}">
+        <input type="hidden" name="spotify_img" class="neutral" id="album-input-artwork-{{@index}}">
+      </div>
+    </form>
   </div>
 
   <div class="action-button-wrap albums">
