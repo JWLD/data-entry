@@ -1,0 +1,99 @@
+// ALBUM SEARCH RESULTS
+
+.slider {
+  position: relative;
+  justify-content: flex-end;
+  transition: 1s cubic-bezier(.6, -.1, .6, .1);
+}
+
+.album-form {
+  justify-content: flex-start;
+  min-width: 76vw;
+  border: 16px solid #333;
+  background-color: #333;
+  border-radius: 3px;
+  margin: 0 0 16px 24vw;
+}
+
+.album-input-wrap {
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #222;
+  height: 304px;
+  width: 100%;
+  border-radius: 2px;
+  padding: 16px;
+}
+
+.album-input-wrap:not(:last-child) {
+  margin-right: 16px;
+}
+
+.album-input-wrap h2 {
+  color: white;
+  font: bold 25px Gidole;
+}
+
+.album-field-wrap, .media-button-wrap {
+  height: 45px;
+  width: 100%;
+}
+
+.album-field-wrap:nth-child(2), .media-button-wrap {
+  margin-top: 16px;
+}
+
+.album-field-wrap:not(:last-child), .media-button-wrap {
+  margin-bottom: 16px;
+}
+
+.album-form label {
+  font: bold 20px Gidole;
+  color: white;
+  width: 120px;
+  height: 100%;
+  background-color: #333;
+  padding: 8px;
+  border-radius: 2px;
+}
+
+.album-form input, .album-form select {
+  flex-grow: 1;
+  margin-left: 16px;
+  height: 100%;
+  border-radius: 2px;
+  padding: 8px;
+  font: bold 20px Gidole;
+  border-width: 3px;
+  border-style: solid;
+}
+
+.link-icon {
+  color: white;
+  font-size: 25px;
+  margin-left: 8px;
+}
+
+.media-button {
+  font: bold 20px Gidole;
+  color: white;
+  background-color: #333;
+  height: 100%;
+  flex-grow: 1;
+  border-radius: 2px;
+}
+
+.media-button:hover {
+  background-color: #444;
+}
+
+.media-button:first-child {
+  margin-right: 16px;
+}
+
+.album-counter {
+  color: white;
+  font: bold 24px Gidole;
+  min-width: 100px;
+  justify-content: flex-end;
+}

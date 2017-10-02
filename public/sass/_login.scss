@@ -15,15 +15,11 @@
   width: 60px;
   font-size: 60px;
   background-color: #111;
-  color: #84bd00;
+  color: $spotify;
 }
 
 .spotify-icon:hover {
   cursor: pointer;
-}
-
-.logged-in {
-  border-color: green;
 }
 
 .login-button-wrap {
