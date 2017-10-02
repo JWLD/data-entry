@@ -39,6 +39,30 @@ spotifyController.redirect = (req, res) => {
   });
 };
 
+// REFRESH ROUTE - GET NEW ACCESS TOKEN FROM SPOTIFY
+spotifyController.refresh = (req, res) => {
+  const data = {
+    grant_type: 'refresh_token',
+    refresh_token: req.query.token,
+    client_id: process.env.SPOTIFY_ID,
+    client_secret: process.env.SPOTIFY_SECRET
+  };
+
+  const options = {
+    method: 'POST',
+    url: 'https://accounts.spotify.com/api/token',
+    json: true,
+    form: data
+  };
+
+  Request(options, (error, response, body) => {
+    if (error) return res.status(500).send(`Error refreshing Spotify access token: ${error}`);
+
+    console.log('REFRESHING ACCESS TOKEN');
+    getUserInfo(body, res);
+  });
+};
+
 // USE ACCESS TOKEN TO GET USER INFO FROM SPOTIFY API
 const getUserInfo = (tokenBody, res) => {
   const options = {
@@ -65,29 +89,6 @@ const getUserInfo = (tokenBody, res) => {
   });
 };
 
-// REFRESH ROUTE - GET NEW ACCESS TOKEN FROM SPOTIFY
-spotifyController.refresh = (req, res) => {
-  const data = {
-    grant_type: 'refresh_token',
-    refresh_token: req.query.token,
-    client_id: process.env.SPOTIFY_ID,
-    client_secret: process.env.SPOTIFY_SECRET
-  };
-
-  const options = {
-    method: 'POST',
-    url: 'https://accounts.spotify.com/api/token',
-    json: true,
-    form: data
-  };
-
-  Request(options, (error, response, body) => {
-    if (error) return res.status(500).send(`Error refreshing Spotify access token: ${error}`);
-
-    console.log('RESPONSE:', body);
-  });
-};
-
 // SEARCH SPOTIFY FOR ALBUM
 spotifyController.findAlbum = (req, res) => {
   const jwt = req.cookies.jwt;
@@ -110,12 +111,19 @@ spotifyController.findAlbum = (req, res) => {
 
   // make request to spotify
   Request(options, (err, response, body) => {
-    if (err || body.error) return res.status(500).send(`Error searching Spotify for album: ${err || body.error.message}`);
+    if (err || body.error) {
+      // if access token has expired
+      if (body.error.message === 'The access token expired') {
+        // if there is a refresh token, make request for a new access token
+        if (decoded.refresh_token) {
+          return res.redirect(`/refresh?token=${decoded.refresh_token}`);
+        } else {
+          return res.status(401).send('Missing access token, please login again.');
+        }
+      }
 
-    // if expired and refresh token, then refresh
-    console.log(decoded.refresh_token);
-    // return res.redirect(`/refresh?token=${decoded.refresh_token}`);
-    // if expired and no refresh token, display error msg
+      return res.status(500).send(`Error searching Spotify for album: ${err || body.error.message}`);
+    }
 
     const topResult = body.albums.items[0];
 
